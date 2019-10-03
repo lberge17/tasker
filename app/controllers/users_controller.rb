@@ -9,9 +9,24 @@ class UsersController < ApplicationController
   end
 
   post "/users" do
-    #create a new user
-    #user = User.create(params)
-    #redirect "/users/#{user.id}"
+    if !User.find_by(username: params["username"]) || !User.find_by(email: params["email"])
+      if params["password"] == params["password_check"]
+        user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
+        if user.save
+          session[:id] = user.id
+          redirect "users/#{user.username}"
+        else
+          #throw error to verify signup info
+          redirect '/signup'
+        end
+      else
+        #create ever message saying passwords don't match
+        redirect '/signup'
+      end
+    else
+      #throw error saying username is already taken or that email is already registered
+      redirect '/signup'
+    end
   end
 
   get "/users/:username" do
