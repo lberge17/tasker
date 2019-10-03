@@ -3,10 +3,6 @@ class Group < ActiveRecord::Base
   has_many :users, through: :group_users
   has_many :tasks
 
-  def owner
-    self.users.first
-  end
-
   def slug
     self.name.downcase.gsub(" ","-")
   end

@@ -1,1 +1,10 @@
-<h1>Form to edit a group.</h1>
+<h1>Edit <%= @group.name %></h1>
+
+<div class="edit-group">
+  <form  action="/groups/<%= @group.slug %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="username">Add Group Member by Username:</label><br>
+    <input type="text" name="username">
+    <input type="submit" name="Add Group Member">
+  </form>
+</div>

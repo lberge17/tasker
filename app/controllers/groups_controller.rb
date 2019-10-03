@@ -10,21 +10,38 @@ class GroupsController < ApplicationController
   end
 
   get "/groups/new" do
-    erb :"/groups/new.html"
+    if logged_in?
+      erb :"/groups/new.html"
+    else
+      redirect '/'
+    end
   end
 
   post "/groups" do
     group = Group.create(params["group"])
     group.users << current_user
+    group.owner = current_user.username
     group.save
     redirect "/groups/#{group.slug}"
   end
 
   get "/groups/:slug" do
     @group = Group.find_by_slug(params[:slug])
-    erb :"/groups/show.html"
+    if logged_in? && @group.users.include?(current_user)
+      erb :"/groups/show.html"
+    else
+      redirect '/'
+    end
   end
 
+  patch "/groups/:slug/members" do
+    group = Group.find_by_slug(params[:slug])
+    user = User.find_by(username: params[:username])
+    if user
+      group.users << user
+    end
+    redirect "/groups/#{group.slug}"
+  end
 #  get "/groups/:id/edit" do
 #    erb :"/groups/edit.html"
 #  end
