@@ -2,8 +2,9 @@
 
 <div class="edit-profile">
   <form action="/users/<%= @user.username %>" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="user[username]" value="<%= @user.username %>" id="username"><br><br>
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="name">Name:</label>
+    <input type="text" name="user[name]" value="<%= @user.name %>" id="name"><br><br>
     <label for="location">Location:</label>
     <input type="text" name="user[location]" value="<%= @user.location %>" id="location"><br><br>
     <label for="bio">Bio:</label><br>

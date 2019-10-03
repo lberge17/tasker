@@ -68,12 +68,21 @@ class UsersController < ApplicationController
 
   get "/users/:username/edit" do
     @user = User.find_by(username: params["username"])
-    erb :"/users/edit.html"
+    if logged_in? && @user == current_user
+      erb :"/users/edit.html"
+    else
+      redirect '/'
+    end
   end
 
   patch "/users/:username" do
-    #user = User.find_by(username: params["username"])
-    #redirect "/users/#{user.slug}"
+    user = User.find_by(username: params["username"])
+    if user == current_user
+      user.update(params["user"])
+      redirect "/users/#{user.username}"
+    else
+      redirect '/'
+    end
   end
 
   delete "/users/:username/delete" do
