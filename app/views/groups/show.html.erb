@@ -3,3 +3,5 @@
 <h3><%= @group.name %></h3>
 
 <p>Owned by: <%= @group.owner.username %></p>
+
+<a href="/groups/<%= @group.slug %>/tasks/new"><p>Add New Task to This Group</p></a>

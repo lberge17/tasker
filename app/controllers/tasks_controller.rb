@@ -5,10 +5,10 @@ class TasksController < ApplicationController
 #    erb :"/tasks/index.html"
 #  end
 
-#  get "/groups/:slug/tasks/new" do
-#    @group = Group.find_by_slug(params[:slug])
-#    erb :"/tasks/new.html"
-#  end
+  get "/groups/:slug/tasks/new" do
+    @group = Group.find_by_slug(params[:slug])
+    erb :"/tasks/new.html"
+  end
 
 #  post "/groups/:slug/tasks" do
 #    @group = Group.find_by_slug(params[:slug])

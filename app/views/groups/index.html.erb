@@ -1,7 +1,7 @@
 <h1>Your groups:</h1>
 
 <% @user.groups.each do |group| %>
-  <h3><%= group.name %></h3>
+  <h3><a href="/groups/<%= group.slug %>"><%= group.name %></a></h3>
   <ul>
     <% group.tasks do |task| %>
       <li><a href="/tasks/<%= task.id %>"><%= task.title %></a></li>
