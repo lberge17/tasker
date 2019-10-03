@@ -103,7 +103,7 @@ class UsersController < ApplicationController
       session.clear
 
       Group.all.each do |group|
-        if group.owner == user
+        if group.owner == user.username
           group.destroy
         end
       end
