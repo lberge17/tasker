@@ -9,6 +9,7 @@ body {
 
 header {
   background-color: #05A89C;
+  height: 100px;
 }
 
 header::after {
@@ -19,7 +20,7 @@ header::after {
 
 .logo {
   border: 3px solid #003463;
-  height: 80px;
+  height: 90px;
   margin: 2px;
   float: left;
 }
@@ -38,6 +39,7 @@ nav li {
   display: inline-block;
   margin-left: 50px;
   padding-top: 40px;
+  position: relative;
 }
 
 nav a {
@@ -48,4 +50,24 @@ nav a {
 
 nav a:hover {
   color: white;
+}
+
+nav a::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #003463;
+  left: 0;
+  right: 0;
+}
+
+.branding {
+  clear: both;
+}
+
+footer.branding {
+  border-top: 2px solid #ccc;
+  margin-top: 20px;
+  padding-top: 20px;
 }
