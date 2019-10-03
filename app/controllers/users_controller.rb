@@ -69,6 +69,15 @@ class UsersController < ApplicationController
     erb :"/users/show.html"
   end
 
+  get "/profile" do
+    if logged_in?
+      @user = current_user
+      erb :"/users/show.html"
+    else
+      redirect "/"
+    end
+  end
+
   get "/users/:username/edit" do
     @user = User.find_by(username: params["username"])
     if logged_in? && @user == current_user
