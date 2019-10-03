@@ -92,7 +92,13 @@ class UsersController < ApplicationController
     user = current_user
     if logged_in?
       session.clear
-      user.destroy
+
+      Group.all.each do |group|
+        if group.owner == user
+          group.destroy
+        end
+      end
+
       redirect "signup"
     else
       redirect "/"
