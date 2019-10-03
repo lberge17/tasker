@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #05A89C;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  border: 3px solid #003463;
+  height: 80px;
+  margin: 2px;
+  float: left;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 50px;
+  padding-top: 40px;
+}
+
+nav a {
+  color: #003463;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}

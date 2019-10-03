@@ -14,22 +14,22 @@ class UsersController < ApplicationController
     #redirect "/users/#{user.id}"
   end
 
-  get "/users/:slug" do
+  get "/users/:username" do
     #@user = User.find_by_slug(params["slug"])
     erb :"/users/show.html"
   end
 
-  get "/users/:slug/edit" do
+  get "/users/:username/edit" do
     #@user = User.find_by_slug(params["slug"])
     erb :"/users/edit.html"
   end
 
-  patch "/users/:slug" do
+  patch "/users/:username" do
     #user = User.find_by_slug(params["slug"])
     #redirect "/users/#{user.slug}"
   end
 
-  delete "/users/:id/delete" do
+  delete "/users/:username/delete" do
     #user = User.find(params["id"])
     #user.destroy
     redirect "/signup"
