@@ -1,1 +1,15 @@
-<h1>Shows a profile of a given user.</h1>
+<h1>Tasker Profile</h1>
+
+<p>Name: <%= @user.name %></p>
+<p>Username: <%= @user.username %></p>
+<p>Email: <%= @user.email %></p>
+<p>Location: <%= @user.location %></p>
+<p>Bio: <%= @user.bio %></p>
+
+<p><a href="/users/<%= @user.username %>/edit">Edit this profile</a><p>
+
+<br><br>
+
+<form action="/logout" method="POST">
+  <input type="submit" value="Log Out">
+</form>

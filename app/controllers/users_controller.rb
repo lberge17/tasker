@@ -56,23 +56,28 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/logout' do
+    session.clear
+    redirect '/login'
+  end
+
   get "/users/:username" do
-    #@user = User.find_by_slug(params["slug"])
+    @user = User.find_by(username: params["username"])
     erb :"/users/show.html"
   end
 
   get "/users/:username/edit" do
-    #@user = User.find_by_slug(params["slug"])
+    #@user = User.find_by(username: params["username"])
     erb :"/users/edit.html"
   end
 
   patch "/users/:username" do
-    #user = User.find_by_slug(params["slug"])
+    #user = User.find_by(username: params["username"])
     #redirect "/users/#{user.slug}"
   end
 
   delete "/users/:username/delete" do
-    #user = User.find(params["id"])
+    #user = User.find_by(username: params["username"])
     #user.destroy
     redirect "/signup"
   end
