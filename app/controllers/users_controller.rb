@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         if params["password"] == params["password_check"]
           user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
           if user.save
-            session[:id] = user.id
+            session[:user_id] = user.id
             redirect "users/#{user.username}"
           else
             #throw error to verify signup info
@@ -38,11 +38,22 @@ class UsersController < ApplicationController
   end
 
   get "/login" do
-
+    if logged_in?
+      redirect "users/#{current_user.username}"
+    else
+      erb :"/users/login.html"
+    end
   end
 
   post "/login" do
-
+    user = User.find_by(username: params["username"])
+    if user && user.authenticate(params["password"])
+      session[:user_id] = user.id
+      redirect "users/#{user.username}"
+    else
+      #throw invalid login error
+      redirect "/login"
+    end
   end
 
   get "/users/:username" do
