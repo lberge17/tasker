@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.find_by_slug(slug)
-    Group.all.find{|group| group.slug = slug}
+    Group.all.find{|group| group.slug == slug}
   end
 
 end
