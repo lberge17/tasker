@@ -108,6 +108,8 @@ class UsersController < ApplicationController
         end
       end
 
+      user.destroy
+
       redirect "signup"
     else
       redirect "/"
