@@ -71,3 +71,11 @@ footer.branding {
   margin-top: 20px;
   padding-top: 20px;
 }
+
+.wrapper {
+  margin: 16px auto;
+  max-width: 960px;
+  padding: 2.25%; /* 18px / 800px */
+  width: 85%;
+  text-align: center;
+}
