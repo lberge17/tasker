@@ -1,1 +1,13 @@
-<h1>Form to edit user.</h1>
+<h1>Edit Your Profile</h1>
+
+<div class="edit-profile">
+  <form action="/users/<%= @user.username %>" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="user[username]" value="<%= @user.username %>" id="username"><br><br>
+    <label for="location">Location:</label>
+    <input type="text" name="user[location]" value="<%= @user.location %>" id="location"><br><br>
+    <label for="bio">Bio:</label><br>
+    <textarea name="user[bio]" rows="10" cols="40" id="bio"><%= @user.bio %></textarea><br><br>
+    <input type="submit" value="Edit Profile">
+  </form>
+</div>

@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   get "/users/:username/edit" do
-    #@user = User.find_by(username: params["username"])
+    @user = User.find_by(username: params["username"])
     erb :"/users/edit.html"
   end
 
