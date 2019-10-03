@@ -1,1 +1,10 @@
-<h1>Shows all tasks (for a user??).</h1>
+<h1>Tasks for <%= @group.name %></h1>
+
+<% @group.tasks.each do |task| %>
+  <h3><%= task.title %></h3>
+  <ul>
+    <% task.sub_tasks.each do |sub_task| %>
+      <li><%= sub_task.content %> - <%= sub_task.complete? ? 'done' : 'still outstanding' %></li>
+    <% end %>
+  </ul>
+<% end %>
