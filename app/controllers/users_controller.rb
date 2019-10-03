@@ -86,8 +86,13 @@ class UsersController < ApplicationController
   end
 
   delete "/users/:username/delete" do
-    #user = User.find_by(username: params["username"])
-    #user.destroy
-    redirect "/signup"
+    user = current_user
+    if logged_in?
+      session.clear
+      user.destroy
+      redirect "signup"
+    else
+      redirect "/"
+    end
   end
 end

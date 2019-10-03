@@ -12,3 +12,12 @@
     <input type="submit" value="Edit Profile">
   </form>
 </div>
+
+<br><br>
+
+<div class="delete-profile">
+  <form action="/users/<%= @user.username %>/delete" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Profile">
+  </form>
+</div>
