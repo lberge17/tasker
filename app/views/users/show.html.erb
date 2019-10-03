@@ -6,7 +6,9 @@
 <p>Location: <%= @user.location %></p>
 <p>Bio: <%= @user.bio %></p>
 
-<p><a href="/users/<%= @user.username %>/edit">Edit this profile</a><p>
+<% if @user == current_user %>
+  <p><a href="/users/<%= @user.username %>/edit">Edit your profile</a><p>
+<% end %>
 
 <br><br>
 
