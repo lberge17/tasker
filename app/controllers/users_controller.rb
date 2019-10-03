@@ -1,32 +1,48 @@
 class UsersController < ApplicationController
 
-  get "/users" do
-    erb :"/users/index.html"
-  end
+#  get "/users" do
+#    erb :"/users/index.html"
+#  end
 
   get "/signup" do
-    erb :"/users/new.html"
+    if logged_in?
+      redirect "users/#{current_user.username}"
+    else
+      erb :"/users/new.html"
+    end
   end
 
-  post "/users" do
-    if !User.find_by(username: params["username"]) || !User.find_by(email: params["email"])
-      if params["password"] == params["password_check"]
-        user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
-        if user.save
-          session[:id] = user.id
-          redirect "users/#{user.username}"
+  post "/signup" do
+    if logged_in?
+      redirect "users/#{current_user.username}"
+    else
+      if !User.find_by(username: params["username"]) || !User.find_by(email: params["email"])
+        if params["password"] == params["password_check"]
+          user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
+          if user.save
+            session[:id] = user.id
+            redirect "users/#{user.username}"
+          else
+            #throw error to verify signup info
+            redirect '/signup'
+          end
         else
-          #throw error to verify signup info
+          #create ever message saying passwords don't match
           redirect '/signup'
         end
       else
-        #create ever message saying passwords don't match
+        #throw error saying username is already taken or that email is already registered
         redirect '/signup'
       end
-    else
-      #throw error saying username is already taken or that email is already registered
-      redirect '/signup'
     end
+  end
+
+  get "/login" do
+
+  end
+
+  post "/login" do
+
   end
 
   get "/users/:username" do
