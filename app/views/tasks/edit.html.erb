@@ -1,8 +1,31 @@
 <h1>Form to edit a task</h1>
 
+<h3>Edit Task Title:</h3>
+<div class="edit-task">
+  <form  action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="title">Change Task Title:</label><br>
+    <input type="text" name="title" value="<%= @task.title %>"><br><br>
+    <input type="submit" value="Change Title">
+  </form>
+</div>
 
+<br><br>
 
+<h3>Add a Todo to Task:</h3>
+<div class="add-todo">
+  <form  action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="todo">Add todo:</label><br>
+    <input type="text" name="todo"><br><br>
+    <input type="submit" value="Add Todo">
+  </form>
+</div>
 
+<br><br>
+
+<h3>Delete Task:</h3>
+<p>This will delete the task and all corresponding todos. It cannot be undone.</p>
 <div class="delete-task">
   <form action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/delete" method="POST">
     <input type="hidden" name="_method" value="DELETE">
