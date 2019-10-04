@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :username, uniqueness: true
 
-  has_many :group_users
-  has_many :groups, through: :group_users
-  has_many :tasks, through: :groups
+  has_many :owned_groups, foreign_key: "owner_id", class_name: "Group"
+  has_many :memberships
+  has_many :groups, through: :memberships
   has_many :sub_tasks
 end

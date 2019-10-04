@@ -19,15 +19,14 @@ class GroupsController < ApplicationController
 
   post "/groups" do
     group = Group.create(params["group"])
-    group.users << current_user
-    group.owner = current_user.username
+    group.owner = current_user
     group.save
     redirect "/groups/#{group.slug}"
   end
 
   get "/groups/:slug" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && @group.users.include?(current_user)
+    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
       erb :"/groups/show.html"
     else
       redirect '/'
@@ -38,7 +37,7 @@ class GroupsController < ApplicationController
     group = Group.find_by_slug(params[:slug])
     user = User.find_by(username: params[:username])
     if user
-      group.users << user
+      group.members << user
     end
     redirect "/groups/#{group.slug}"
   end
