@@ -75,12 +75,6 @@ class TasksController < ApplicationController
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
     task.sub_tasks.destroy_all
-    #SubTask.all.each do |sub_task|
-    #  if sub_task.task == task
-    #    sub_task.destroy
-    #  end
-    #end
-
     task.destroy
 
     redirect "/groups/#{group.slug}/tasks"

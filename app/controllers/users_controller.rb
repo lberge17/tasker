@@ -102,12 +102,14 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
 
-      Group.all.each do |group|
-        if group.owner == user
-          group.destroy
+      user.owned_groups.each do |owned_group|
+        owned_group.tasks.each do |task|
+          task.sub_tasks.destroy_all
         end
+        owned_group.tasks.destroy_all
       end
 
+      user.owned_groups.destroy_all
       user.destroy
 
       redirect "signup"
