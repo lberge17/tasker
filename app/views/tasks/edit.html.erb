@@ -1,1 +1,11 @@
 <h1>Form to edit a task</h1>
+
+
+
+
+<div class="delete-task">
+  <form action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/delete" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Task">
+  </form>
+</div>

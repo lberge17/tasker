@@ -47,18 +47,23 @@ class TasksController < ApplicationController
     end
   end
 
-#  get "/groups/:slug/tasks/:id/edit" do
-#    @group = Group.find_by_slug(params[:slug])
-#    erb :"/tasks/edit.html"
-#  end
+  get "/groups/:slug/tasks/:id/edit" do
+    @group = Group.find_by_slug(params[:slug])
+    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+      @task = Task.find_by(id: params[:id])
+      erb :"/tasks/edit.html"
+    else
+      redirect '/'
+    end
+  end
 
 #  patch "/groups/:slug/tasks/:id" do
 #    @group = Group.find_by_slug(params[:slug])
 #    redirect "/tasks/:id"
 #  end
 
-#  delete "/groups/:slug/tasks/:id/delete" do
-#    @group = Group.find_by_slug(params[:slug])
-#    redirect "/tasks"
-#  end
+  delete "/groups/:slug/tasks/:id/delete" do
+    @group = Group.find_by_slug(params[:slug])
+    redirect "/tasks"
+  end
 end
