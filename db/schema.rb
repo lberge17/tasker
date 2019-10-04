@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20191003120036) do
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
+    t.text     "info"
     t.integer  "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(version: 20191003120036) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
-    t.string   "bio"
+    t.text     "bio"
     t.string   "location"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
