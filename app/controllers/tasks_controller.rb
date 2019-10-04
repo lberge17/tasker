@@ -74,12 +74,12 @@ class TasksController < ApplicationController
   delete "/groups/:slug/tasks/:id/delete" do
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
-
-    SubTask.all.each do |sub_task|
-      if sub_task.task == task
-        sub_task.destroy
-      end
-    end
+    task.sub_tasks.destroy_all
+    #SubTask.all.each do |sub_task|
+    #  if sub_task.task == task
+    #    sub_task.destroy
+    #  end
+    #end
 
     task.destroy
 
