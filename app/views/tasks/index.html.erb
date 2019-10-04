@@ -1,7 +1,7 @@
 <h1>Tasks for <%= @group.name %></h1>
 
 <% @group.tasks.each do |task| %>
-  <h3><%= task.title %></h3>
+  <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
 
   <% task.sub_tasks.each do |sub_task| %>
     <p><%= sub_task.content %> - <%= sub_task.complete? ? 'done' : 'still outstanding' %></p>

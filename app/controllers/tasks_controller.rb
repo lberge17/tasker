@@ -37,10 +37,15 @@ class TasksController < ApplicationController
     redirect "/groups/#{group.slug}/tasks"
   end
 
-#  get "/groups/:slug/tasks/:id" do
-#    @group = Group.find_by_slug(params[:slug])
-#    erb :"/tasks/show.html"
-#  end
+  get "/groups/:slug/tasks/:id" do
+    @group = Group.find_by_slug(params[:slug])
+    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+      @task = Task.find_by(id: params[:id])
+      erb :"/tasks/show.html"
+    else
+      redirect '/'
+    end
+  end
 
 #  get "/groups/:slug/tasks/:id/edit" do
 #    @group = Group.find_by_slug(params[:slug])
