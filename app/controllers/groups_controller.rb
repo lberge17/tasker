@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
 
   get "/groups/:slug" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+    if logged_in? && in_group?(@group)
       erb :"/groups/show.html"
     else
       redirect '/'
@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
     end
     redirect "/groups/#{group.slug}"
   end
-  
+
 #  get "/groups/:id/edit" do
 #    erb :"/groups/edit.html"
 #  end

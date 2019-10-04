@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+    if logged_in? && in_group?(@group)
       erb :"/tasks/index.html"
     else
       redirect '/'
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks/new" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+    if logged_in? && in_group?(@group)
       erb :"/tasks/new.html"
     else
       redirect '/'
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks/:id" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+    if logged_in? && in_group?(@group)
       @task = Task.find_by(id: params[:id])
       erb :"/tasks/show.html"
     else
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks/:id/edit" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
+    if logged_in? && in_group?(@group)
       @task = Task.find_by(id: params[:id])
       erb :"/tasks/edit.html"
     else
