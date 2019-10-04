@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         if params["password"] == params["password_check"]
           user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
           if user.save
-            private_group = Group.create(name: "#{user.name}'s Private Tasks")
+            private_group = Group.create(name: "My Tasks")
             private_group.owner = user
             private_group.save
             session[:user_id] = user.id
