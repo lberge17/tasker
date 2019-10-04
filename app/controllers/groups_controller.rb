@@ -41,6 +41,7 @@ class GroupsController < ApplicationController
     end
     redirect "/groups/#{group.slug}"
   end
+  
 #  get "/groups/:id/edit" do
 #    erb :"/groups/edit.html"
 #  end

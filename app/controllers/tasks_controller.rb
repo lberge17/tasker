@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && @group.users.include?(current_user)
+    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
       erb :"/tasks/index.html"
     else
       redirect '/'
@@ -11,7 +11,7 @@ class TasksController < ApplicationController
 
   get "/groups/:slug/tasks/new" do
     @group = Group.find_by_slug(params[:slug])
-    if logged_in? && @group.users.include?(current_user)
+    if logged_in? && (@group.members.include?(current_user) || @group.owner == current_user)
       erb :"/tasks/new.html"
     else
       redirect '/'

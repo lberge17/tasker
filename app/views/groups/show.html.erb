@@ -2,17 +2,21 @@
 
 <h3><%= @group.name %></h3>
 
-<p>Owned by: <%= @group.owner %></p>
+<h4>Owned by:</h4>
 
-<p>Members:</p>
-<ul>
-  <% @group.members.each do |member| %>
-    <li><%= member.username %></li>
-  <% end %>
-</ul>
+<p><%= @group.owner.username %></p>
 
+<h4>Members:</h4>
+
+<% @group.members.each do |member| %>
+  <p><%= member.username %></p>
+<% end %>
+
+<br>
 
 <a href="/groups/<%= @group.slug %>/tasks/new"><p>Add New Task to This Group</p></a>
+
+<br>
 
 <div class="add-member">
   <form  action="/groups/<%= @group.slug %>/members" method="POST">

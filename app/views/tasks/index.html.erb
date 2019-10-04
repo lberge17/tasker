@@ -2,9 +2,9 @@
 
 <% @group.tasks.each do |task| %>
   <h3><%= task.title %></h3>
-  <ul class="task">
-    <% task.sub_tasks.each do |sub_task| %>
-      <li><%= sub_task.content %> - <%= sub_task.complete? ? 'done' : 'still outstanding' %></li>
-    <% end %>
-  </ul>
+
+  <% task.sub_tasks.each do |sub_task| %>
+    <p><%= sub_task.content %> - <%= sub_task.complete? ? 'done' : 'still outstanding' %></p>
+  <% end %>
+
 <% end %>
