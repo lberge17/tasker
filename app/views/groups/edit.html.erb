@@ -3,8 +3,10 @@
 <div class="edit-group">
   <form  action="/groups/<%= @group.slug %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
-    <label for="username">Add Group Member by Username:</label><br>
-    <input type="text" name="username">
-    <input type="submit" value="Add Group Member">
+    <label for="name">Change Group Name:</label><br>
+    <input type="text" name="name" value="<%= @group.name %>"><br>
+    <label for="username">Transfer Ownership (by username):</label><br>
+    <input type="text" name="username" value="<%= @group.owner.username %>"><br><br>
+    <input type="submit" value="Update Group">
   </form>
 </div>
