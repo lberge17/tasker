@@ -2,23 +2,29 @@
 
 <h4>Owned by:</h4>
 
-<p><%= @group.owner.username %></p>
+<p><%= @group.owner.username %></p><br>
 
 <h4>Group Description:</h4>
 
-<p><%= @group.info %></p>
+<p><%= @group.info %></p><br>
 
 <h4>Members:</h4>
 
 <% @group.members.each do |member| %>
   <p><%= member.username %></p>
+<% end %><br>
+
+<a href="/groups/<%= @group.slug %>/tasks"><h4>All Tasks:</h4></a>
+
+<% @group.tasks.each do |task| %>
+  <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
 <% end %>
 
-<br>
+<br><br>
 
 <a href="/groups/<%= @group.slug %>/tasks/new"><p>Add New Task to This Group</p></a>
 
-<br>
+<br><br>
 
 <% if @group.owner == @user %>
   <div class="add-member">
