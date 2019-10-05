@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
   patch "/groups/:slug/members" do
     group = Group.find_by_slug(params[:slug])
     user = User.find_by(username: params[:username])
-    if user
+    if user && !group.members.include?(user)
       group.members << user
     end
     redirect "/groups/#{group.slug}"
@@ -58,20 +58,21 @@ class GroupsController < ApplicationController
 
     group.update(name: params["name"]) if !params["name"].empty?
 
-    if !params["username"].empty? && user
+    if !params["username"].empty? && user && group.members.include?(user)
       group.owner = user
-      group.save
-      group.members << current_user if (group.owner != current_user)
-
+      group.members << current_user
       group.members.delete(User.find(user))
-
       group.save
     end
 
     redirect "/groups/#{group.slug}"
   end
 
-#  delete "/groups/:slug/delete" do
-#    redirect "/groups"
-#  end
+  delete "/groups/:slug/delete" do
+    group = Group.find_by_slug(params[:slug])
+    group.tasks.each{|task| task.sub_tasks.destroy_all }
+    group.tasks.destroy_all
+    group.destroy
+    redirect "/groups"
+  end
 end
