@@ -4,6 +4,10 @@
 
 <p><%= @group.owner.username %></p>
 
+<h4>Group Description:</h4>
+
+<p><%= @group.info %></p>
+
 <h4>Members:</h4>
 
 <% @group.members.each do |member| %>

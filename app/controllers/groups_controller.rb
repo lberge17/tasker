@@ -58,6 +58,8 @@ class GroupsController < ApplicationController
 
     group.update(name: params["name"]) if !params["name"].empty?
 
+    group.update(info: params["info"]) if !params["info"].empty?
+
     if !params["username"].empty? && user && group.members.include?(user)
       group.owner = user
       group.members << current_user

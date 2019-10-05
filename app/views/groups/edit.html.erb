@@ -5,6 +5,8 @@
     <input type="hidden" name="_method" value="PATCH">
     <label for="name">Change Group Name:</label><br>
     <input type="text" name="name" value="<%= @group.name %>"><br>
+    <label for="info">Add a Group Description:</label><br>
+    <textarea name="info" rows="8" cols="80"><%= @group.info %></textarea><br>
     <label for="username">Transfer Ownership (by username):</label><br>
     <input type="text" name="username"><br><br>
     <input type="submit" value="Update Group">
