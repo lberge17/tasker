@@ -96,4 +96,17 @@ class TasksController < ApplicationController
 
     redirect "/groups/#{group.slug}/tasks"
   end
+
+  delete "/groups/:slug/tasks/:id/todos/delete" do
+    group = Group.find_by_slug(params[:slug])
+    task = Task.find_by(id: params[:id])
+
+    if params["sub_task"]
+      params["sub_task"].each do |id|
+        SubTask.find(id.to_i).destroy
+      end
+    end
+
+    redirect "/groups/#{group.slug}/tasks/#{task.id}"
+  end
 end
