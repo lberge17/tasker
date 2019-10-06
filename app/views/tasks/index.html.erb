@@ -1,13 +1,31 @@
 <h1 class="center">Tasks for <%= @group.name %></h1>
 
-<% @group.tasks.each do |task| %>
-  <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
+<div class="row center">
+  <div class="column">
+    <h2>Outstanding Tasks</h2>
+    <% @group.tasks.each do |task| %>
+      <% if task.complete? == false %>
+        <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
 
-  <% task.sub_tasks.each do |sub_task| %>
-    <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>
-  <% end %>
+        <% task.sub_tasks.each do |sub_task| %>
+          <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="column">
+    <h2>Completed Tasks</h2>
+    <% @group.tasks.each do |task| %>
+      <% if task.complete? == true %>
+        <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
 
-<% end %>
+        <% task.sub_tasks.each do |sub_task| %>
+          <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 
 <br><br><form action="/logout" method="POST" class="center">
