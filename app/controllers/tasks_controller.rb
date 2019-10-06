@@ -71,9 +71,11 @@ class TasksController < ApplicationController
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
 
-    if !params["sub_task"].empty?
-      params["sub_task"].each do |id|
-        SubTask.find(id).update(complete?: true)
+    task.sub_tasks.each do |sub_task|
+      if params["sub_task"] && params["sub_task"].include?(sub_task.id.to_s)
+        sub_task.update(complete?: true)
+      else
+        sub_task.update(complete?: false)
       end
     end
 
