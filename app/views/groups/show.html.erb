@@ -40,3 +40,12 @@
 
   <p><a href="/groups/<%= @group.slug %>/edit">Edit or Delete this Group</a></p>
 <% end %>
+
+<% if @group.members.include?(@user) %>
+  <div class="leave-group">
+    <form  action="/groups/<%= @group.slug %>/members" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Leave Group">
+    </form>
+  </div><br>
+<% end %>

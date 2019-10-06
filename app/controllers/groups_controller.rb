@@ -43,6 +43,12 @@ class GroupsController < ApplicationController
     redirect "/groups/#{group.slug}"
   end
 
+  delete "/groups/:slug/members" do
+    group = Group.find_by_slug(params[:slug])
+    group.members.delete(User.find(current_user))
+    redirect "/groups"
+  end
+
   get "/groups/:slug/edit" do
     @group = Group.find_by_slug(params[:slug])
     if logged_in? && (@group.owner == current_user)
