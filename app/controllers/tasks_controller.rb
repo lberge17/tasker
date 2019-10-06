@@ -79,6 +79,12 @@ class TasksController < ApplicationController
       end
     end
 
+    if params["task"]
+      task.update(complete?: true)
+    else
+      task.update(complete?: false)
+    end
+
     if !params["content"].empty?
       todo = SubTask.create(content: params["content"])
       todo.task = task

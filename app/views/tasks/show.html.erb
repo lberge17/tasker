@@ -9,6 +9,7 @@
   <% @task.sub_tasks.each do |sub_task| %>
     <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>" <%= 'checked' if (sub_task.complete? == true) %>><%= sub_task.content %><br>
   <% end %><br>
+  <input type="checkbox" name="task" <%= 'checked' if (@task.complete? == true) %>>Entire task complete<br><br>
   <label for="content">Add todo:</label><br>
   <input type="text" name="content"><br><br>
   <input type="submit" value="Update">
