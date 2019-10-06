@@ -46,9 +46,9 @@
     <% end %>
     <br>
 
-    <button type="button" href="/groups/<%= @group.slug %>/tasks/new">Add New Task</button>
+    <a href="/groups/<%= @group.slug %>/tasks/new"><button type="button">Add New Task</button></a>
     <br><br>
-    <button type="button" href=""/groups/<%= @group.slug %>/tasks"">View All Tasks</button>
+    <a href="/groups/<%= @group.slug %>/tasks"><button type="button">View All Tasks</button></a>
   </div>
 </div>
 
@@ -56,7 +56,7 @@
 
 <div class="center">
 
-    <button type="button" href="/groups/<%= @group.slug %>/edit">Edit/Delete Group</button>
+  <a href="/groups/<%= @group.slug %>/edit"><button type="button">Edit/Delete Group</button></a>
   <% end %>
 
   <% if @group.members.include?(@user) %>

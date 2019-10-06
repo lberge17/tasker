@@ -7,7 +7,7 @@
 <p>Bio: <%= @user.bio %></p>
 
 <% if @user == current_user %>
-  <button href="/users/<%= @user.username %>/edit">Edit your profile</button>
+  <a href="/users/<%= @user.username %>/edit"><button type="button">Edit your profile</button></a>
 <% end %>
 
 <br><br>
