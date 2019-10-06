@@ -1,45 +1,62 @@
 <h1 class="center"><%= @group.name %></h1>
 
-<h4>Owned by:</h4>
+<div class="row center">
+  <div class="column">
+    <h4>Owned by:</h4>
 
-<p><%= @group.owner.username %></p><br>
+    <p><%= @group.owner.username %></p><br>
 
-<h4>Group Description:</h4>
+    <h4>Group Description:</h4>
 
-<p><%= @group.info %></p><br>
+    <p><%= @group.info %></p><br>
 
-<h4>Members:</h4>
+    <h4>Members:</h4>
 
-<% @group.members.each do |member| %>
-  <p><%= member.username %></p>
-<% end %><br>
+    <% @group.members.each do |member| %>
+      <p><%= member.username %></p>
+    <% end %><br><br>
 
-<a href="/groups/<%= @group.slug %>/tasks"><h4>All Tasks:</h4></a>
+    <% if @group.owner == @user %>
+      <div class="form">
+        <form  action="/groups/<%= @group.slug %>/members" method="POST">
+          <input type="hidden" name="_method" value="PATCH">
+          <label for="username">Add Group Member by Username:</label><br>
+          <input type="text" name="username"><br>
+          <input type="submit" value="Add Member">
+        </form>
+      </div><br>
+  </div>
 
-<% @group.tasks.each do |task| %>
-  <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
-<% end %>
+  <div class="column">
+    <h4>Oustanding Tasks:</h4>
 
-<br><br>
+    <% @group.tasks.each do |task| %>
+      <% if task.complete? == false %>
+        <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
+      <% end %>
+    <% end %>
 
-<button href="/groups/<%= @group.slug %>/tasks/new">Add New Task</button>
+    <br>
+    <h4>Completed Tasks:</h4>
+
+    <% @group.tasks.each do |task| %>
+      <% if task.complete? == true %>
+        <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
+      <% end %>
+    <% end %>
+    <br>
+
+    <button type="button" href="/groups/<%= @group.slug %>/tasks/new">Add New Task</button>
+    <br><br>
+    <button type="button" href=""/groups/<%= @group.slug %>/tasks"">View All Tasks</button>
+  </div>
+</div>
 
 <br><br>
 
 <div class="center">
-  <% if @group.owner == @user %>
-    <div class="form">
-      <form  action="/groups/<%= @group.slug %>/members" method="POST">
-        <input type="hidden" name="_method" value="PATCH">
-        <label for="username">Add Group Member by Username:</label><br>
-        <input type="text" name="username"><br>
-        <input type="submit" value="Add Member">
-      </form>
-    </div>
 
-    <br>
-
-    <p><a href="/groups/<%= @group.slug %>/edit">Edit or Delete this Group</a></p>
+    <button type="button" href="/groups/<%= @group.slug %>/edit">Edit/Delete Group</button>
   <% end %>
 
   <% if @group.members.include?(@user) %>
