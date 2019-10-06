@@ -65,3 +65,14 @@ nav a::before {
 .center {
   text-align: center;
 }
+
+.wrapper {
+  padding-left: 10%;
+  padding-right: 10%
+}
+
+.branding {
+  border-top: 1px solid black;
+  padding: 2%;
+  margin: 5%;
+}

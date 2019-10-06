@@ -1,4 +1,4 @@
-<h1>Tasker Profile</h1>
+<h1 class="center">Tasker Profile</h1>
 
 <p>Name: <%= @user.name %></p>
 <p>Username: <%= @user.username %></p>
@@ -7,11 +7,11 @@
 <p>Bio: <%= @user.bio %></p>
 
 <% if @user == current_user %>
-  <p><a href="/users/<%= @user.username %>/edit">Edit your profile</a><p>
+  <button href="/users/<%= @user.username %>/edit">Edit your profile</button>
 <% end %>
 
 <br><br>
 
-<form action="/logout" method="POST">
+<form action="/logout" method="POST" class="center">
   <input type="submit" value="Log Out">
 </form>
