@@ -1,14 +1,22 @@
 <h1 class="center"><%= @group.name %></h1>
 
-<h2><%= @task.title %></h2>
+<h2 class="center"><%= @task.title %></h2>
 
 <h4>Todos</h4>
 
-<% @task.sub_tasks.each do |subtask| %>
-  <p><%= subtask.content %></p>
-<% end %>
+<form action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <% @task.sub_tasks.each do |sub_task| %>
+    <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>" <%= 'checked' if (sub_task.complete? == true) %>><%= sub_task.content %><br>
+  <% end %><br>
+  <label for="content">Add todo:</label><br>
+  <input type="text" name="content"><br><br>
+  <input type="submit" value="Update">
+</form>
 
-<p><a href="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/edit">Edit this task</a></p>
+<br><br>
+
+<button type="button" href="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/edit">Edit/Delete Task</button>
 
 
 <br><br><form action="/logout" method="POST" class="center">

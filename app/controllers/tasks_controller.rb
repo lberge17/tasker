@@ -71,9 +71,17 @@ class TasksController < ApplicationController
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
 
-    todo = SubTask.create(content: params["content"])
-    todo.task = task
-    todo.save
+    if !params["sub_task"].empty?
+      params["sub_task"].each do |id|
+        SubTask.find(id).update(complete?: true)
+      end
+    end
+
+    if !params["content"].empty?
+      todo = SubTask.create(content: params["content"])
+      todo.task = task
+      todo.save
+    end
 
     redirect "/groups/#{group.slug}/tasks/#{task.id}"
   end
