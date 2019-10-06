@@ -1,4 +1,4 @@
-<h1><%= @group.name %></h1>
+<h1 class="center"><%= @group.name %></h1>
 
 <h4>Owned by:</h4>
 
@@ -22,30 +22,36 @@
 
 <br><br>
 
-<a href="/groups/<%= @group.slug %>/tasks/new"><p>Add New Task to This Group</p></a>
+<button href="/groups/<%= @group.slug %>/tasks/new">Add New Task</button>
 
 <br><br>
 
-<% if @group.owner == @user %>
-  <div class="form">
-    <form  action="/groups/<%= @group.slug %>/members" method="POST">
-      <input type="hidden" name="_method" value="PATCH">
-      <label for="username">Add Group Member by Username:</label><br>
-      <input type="text" name="username"><br>
-      <input type="submit" value="Add Member">
-    </form>
-  </div>
+<div class="center">
+  <% if @group.owner == @user %>
+    <div class="form">
+      <form  action="/groups/<%= @group.slug %>/members" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <label for="username">Add Group Member by Username:</label><br>
+        <input type="text" name="username"><br>
+        <input type="submit" value="Add Member">
+      </form>
+    </div>
 
-  <br>
+    <br>
 
-  <p><a href="/groups/<%= @group.slug %>/edit">Edit or Delete this Group</a></p>
-<% end %>
+    <p><a href="/groups/<%= @group.slug %>/edit">Edit or Delete this Group</a></p>
+  <% end %>
 
-<% if @group.members.include?(@user) %>
-  <div class="form">
-    <form  action="/groups/<%= @group.slug %>/members" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Leave Group">
-    </form>
-  </div><br>
-<% end %>
+  <% if @group.members.include?(@user) %>
+    <div class="form">
+      <form  action="/groups/<%= @group.slug %>/members" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Leave Group">
+      </form>
+    </div><br>
+  <% end %>
+</div>
+
+<br><br><form action="/logout" method="POST" class="center">
+  <input type="submit" value="Log Out">
+</form>

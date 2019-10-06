@@ -1,4 +1,4 @@
-<h1><%= @group.name %></h1>
+<h1 class="center"><%= @group.name %></h1>
 
 <h2><%= @task.title %></h2>
 
@@ -9,3 +9,8 @@
 <% end %>
 
 <p><a href="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/edit">Edit this task</a></p>
+
+
+<br><br><form action="/logout" method="POST" class="center">
+  <input type="submit" value="Log Out">
+</form>
