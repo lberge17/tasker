@@ -1,24 +1,27 @@
-<h1>Edit <%= @group.name %></h1>
+<div class="center">
+  <h1>Edit <%= @group.name %></h1>
 
-<div class="edit-group">
-  <form  action="/groups/<%= @group.slug %>" method="POST">
-    <input type="hidden" name="_method" value="PATCH">
-    <label for="name">Change Group Name:</label><br>
-    <input type="text" name="name" value="<%= @group.name %>"><br>
-    <label for="info">Add a Group Description:</label><br>
-    <textarea name="info" rows="8" cols="80"><%= @group.info %></textarea><br>
-    <label for="username">Transfer Ownership (by username):</label><br>
-    <input type="text" name="username"><br><br>
-    <input type="submit" value="Update Group">
-  </form>
-</div>
+  <div class="form">
+    <form  action="/groups/<%= @group.slug %>" method="POST">
+      <input type="hidden" name="_method" value="PATCH">
+      <label for="name">Change Group Name:</label><br>
+      <input type="text" name="name" value="<%= @group.name %>"><br>
+      <label for="info">Add a Group Description:</label><br>
+      <textarea name="info" rows="8" cols="80"><%= @group.info %></textarea><br>
+      <label for="username">Transfer Ownership (by username):</label><br>
+      <input type="text" name="username"><br><br>
+      <input type="submit" value="Update Group">
+    </form>
+  </div>
 
-<br>
+  <br>
 
-<p>This will delete this group and all cooresponding tasks. This cannot be undone.</p>
-<div class="delete-group">
-  <form action="/groups/<%= @group.slug %>/delete" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Group">
-  </form>
+  <p>This will delete this group and all cooresponding tasks. This cannot be undone.</p>
+  <div class="form">
+    <form action="/groups/<%= @group.slug %>/delete" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Group">
+    </form>
+  </div>
+
 </div>

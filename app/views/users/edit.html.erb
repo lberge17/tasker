@@ -1,23 +1,26 @@
-<h1>Edit Your Profile</h1>
+<div class="center">
+  <h1>Edit Your Profile</h1>
 
-<div class="edit-profile">
-  <form action="/users/<%= @user.username %>" method="POST">
-    <input type="hidden" name="_method" value="PATCH">
-    <label for="name">Name:</label>
-    <input type="text" name="user[name]" value="<%= @user.name %>" id="name"><br><br>
-    <label for="location">Location:</label>
-    <input type="text" name="user[location]" value="<%= @user.location %>" id="location"><br><br>
-    <label for="bio">Bio:</label><br>
-    <textarea name="user[bio]" rows="10" cols="40" id="bio"><%= @user.bio %></textarea><br><br>
-    <input type="submit" value="Edit Profile">
-  </form>
-</div>
+  <div class="edit-profile">
+    <form action="/users/<%= @user.username %>" method="POST">
+      <input type="hidden" name="_method" value="PATCH">
+      <label for="name">Name:</label>
+      <input type="text" name="user[name]" value="<%= @user.name %>" id="name"><br><br>
+      <label for="location">Location:</label>
+      <input type="text" name="user[location]" value="<%= @user.location %>" id="location"><br><br>
+      <label for="bio">Bio:</label><br>
+      <textarea name="user[bio]" rows="10" cols="40" id="bio"><%= @user.bio %></textarea><br><br>
+      <input type="submit" value="Edit Profile">
+    </form>
+  </div>
 
-<br><br>
+  <br><br>
 
-<div class="delete-profile">
-  <form action="/users/<%= @user.username %>/delete" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Profile">
-  </form>
+  <div class="delete-profile">
+    <form action="/users/<%= @user.username %>/delete" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Profile">
+    </form>
+  </div>
+
 </div>

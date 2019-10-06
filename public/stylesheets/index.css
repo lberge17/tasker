@@ -62,6 +62,7 @@ nav a::before {
   right: 0;
 }
 
+
 .branding {
   clear: both;
 }
@@ -76,6 +77,6 @@ footer.branding {
   margin: 16px auto;
   max-width: 960px;
   padding: 2.25%; /* 18px / 800px */
-  width: 85%;
-  text-align: center;
+  #width: 85%;
+  text-align: left;
 }

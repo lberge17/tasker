@@ -1,16 +1,18 @@
-<h1>Welcome to Tasker!</h1>
-<h2>Sign Up</h2>
+<div class="center">
+  <h1>Welcome to Tasker!</h1>
+  <h2>Sign Up</h2>
 
-<div class="signup">
-  <form action="/signup" method="POST">
-    <input type="text" name="name" placeholder="Your name"><br>
-    <input type="text" pattern="[A-Za-z1-9]{5,}" name="username" placeholder="username" title="Must be 5 or more characters, only letters and numbers"/><br>
-    <input type="email" name="email" placeholder="email"><br>
-    <input type="password" name="password" placeholder="password"><br>
-    <input type="password" name="password_check" placeholder="retype password"><br><br>
-    <input type="submit" value="Sign Up!">
-  </form>
+  <div class="form">
+    <form action="/signup" method="POST">
+      <input type="text" name="name" placeholder="Your name"><br>
+      <input type="text" pattern="[A-Za-z1-9]{5,}" name="username" placeholder="username" title="Must be 5 or more characters, only letters and numbers"/><br>
+      <input type="email" name="email" placeholder="email"><br>
+      <input type="password" name="password" placeholder="password"><br>
+      <input type="password" name="password_check" placeholder="retype password"><br><br>
+      <input type="submit" value="Sign Up!">
+    </form>
+  </div>
+
+
+  <br><p>If you already have an account, <a href="/login">Log In</a> here.</p><br>
 </div>
-
-
-<br><p>If you already have an account, <a href="/login">Log In</a> here.</p><br>

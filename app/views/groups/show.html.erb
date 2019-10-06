@@ -27,7 +27,7 @@
 <br><br>
 
 <% if @group.owner == @user %>
-  <div class="add-member">
+  <div class="form">
     <form  action="/groups/<%= @group.slug %>/members" method="POST">
       <input type="hidden" name="_method" value="PATCH">
       <label for="username">Add Group Member by Username:</label><br>
@@ -42,7 +42,7 @@
 <% end %>
 
 <% if @group.members.include?(@user) %>
-  <div class="leave-group">
+  <div class="form">
     <form  action="/groups/<%= @group.slug %>/members" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="Leave Group">
