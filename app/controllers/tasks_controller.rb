@@ -61,14 +61,21 @@ class TasksController < ApplicationController
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
 
-    "Add way to edit group title here!!!"
-    #redirect "/groups/#{group.slug}/tasks/#{task.id}"
+    task.update(title: params["title"])
+
+
+    redirect "/groups/#{group.slug}/tasks/#{task.id}"
   end
 
-  patch "/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos" do
+  patch "/groups/:slug/tasks/:id/todos" do
     group = Group.find_by_slug(params[:slug])
     task = Task.find_by(id: params[:id])
-    "Add way to add a todo to a task here!!!!!!"
+
+    todo = SubTask.create(content: params["content"])
+    todo.task = task
+    todo.save
+
+    redirect "/groups/#{group.slug}/tasks/#{task.id}"
   end
 
   delete "/groups/:slug/tasks/:id/delete" do

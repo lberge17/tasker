@@ -16,8 +16,8 @@
 <div class="add-todo">
   <form  action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos" method="POST">
     <input type="hidden" name="_method" value="PATCH">
-    <label for="todo">Add todo:</label><br>
-    <input type="text" name="todo"><br><br>
+    <label for="content">Add todo:</label><br>
+    <input type="text" name="content"><br><br>
     <input type="submit" value="Add Todo">
   </form>
 </div>
