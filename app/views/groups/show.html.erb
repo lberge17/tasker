@@ -1,6 +1,7 @@
 <h1 class="center"><%= @group.name %></h1>
 
 <div class="row center">
+
   <div class="column">
     <h4>Owned by:</h4>
 
@@ -25,6 +26,7 @@
           <input type="submit" value="Add Member">
         </form>
       </div><br>
+    <% end %>
   </div>
 
   <div class="column">
@@ -50,6 +52,7 @@
     <br><br>
     <a href="/groups/<%= @group.id %>/tasks"><button type="button">View All Tasks</button></a>
   </div>
+
 </div>
 
 <br><br>
@@ -57,7 +60,6 @@
 <div class="center">
 
   <a href="/groups/<%= @group.id %>/edit"><button type="button">Edit/Delete Group</button></a>
-  <% end %>
 
   <% if @group.members.include?(@user) %>
     <div class="form">
@@ -67,8 +69,8 @@
       </form>
     </div><br>
   <% end %>
-</div>
 
-<br><br><form action="/logout" method="POST" class="center">
-  <input type="submit" value="Log Out">
-</form>
+  <br><br><form action="/logout" method="POST">
+    <input type="submit" value="Log Out">
+  </form>
+</div>
