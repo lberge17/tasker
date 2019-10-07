@@ -17,10 +17,14 @@
         <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
       <% end %>
     <% end %>
-    <form action="/groups/<%= @group.id %>/tasks/complete/delete" method="post">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete All Completed Tasks">
-    </form>
+
+    <% @group.owner == current_user %>
+      <form action="/groups/<%= @group.id %>/tasks/complete/delete" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete All Completed Tasks">
+      </form>
+    <% end %>
+    
   </div>
 </div>
 

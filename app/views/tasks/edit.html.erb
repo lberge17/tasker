@@ -11,29 +11,33 @@
     </form>
   </div>
 
-  <br><br>
+  <% if @group.owner == current_user %>
 
-  <h3>Delete a Todo:</h3>
-  <div class="form">
-    <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <% @task.sub_tasks.each do |sub_task| %>
-        <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
-      <% end %><br><br>
-      <input type="submit" value="Delete">
-    </form>
-  </div>
+    <br><br>
 
-  <br><br>
+    <h3>Delete a Todo:</h3>
+    <div class="form">
+      <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <% @task.sub_tasks.each do |sub_task| %>
+          <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
+        <% end %><br><br>
+        <input type="submit" value="Delete">
+      </form>
+    </div>
 
-  <h3>Delete Task:</h3>
-  <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
-  <div class="form">
-    <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
-      <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Task">
-    </form>
-  </div>
+    <br><br>
+
+    <h3>Delete Task:</h3>
+    <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
+    <div class="form">
+      <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Task">
+      </form>
+    </div>
+
+  <% end %>
 
 </div>
 
