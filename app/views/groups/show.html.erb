@@ -18,7 +18,7 @@
 
     <% if @group.owner == @user %>
       <div class="form">
-        <form  action="/groups/<%= @group.slug %>/members" method="POST">
+        <form  action="/groups/<%= @group.id %>/members" method="POST">
           <input type="hidden" name="_method" value="PATCH">
           <label for="username">Add Group Member by Username:</label><br>
           <input type="text" name="username"><br>
@@ -32,7 +32,7 @@
 
     <% @group.tasks.each do |task| %>
       <% if task.complete? == false %>
-        <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
+        <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
       <% end %>
     <% end %>
 
@@ -41,14 +41,14 @@
 
     <% @group.tasks.each do |task| %>
       <% if task.complete? == true %>
-        <a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
+        <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
       <% end %>
     <% end %>
     <br>
 
-    <a href="/groups/<%= @group.slug %>/tasks/new"><button type="button">Add New Task</button></a>
+    <a href="/groups/<%= @group.id %>/tasks/new"><button type="button">Add New Task</button></a>
     <br><br>
-    <a href="/groups/<%= @group.slug %>/tasks"><button type="button">View All Tasks</button></a>
+    <a href="/groups/<%= @group.id %>/tasks"><button type="button">View All Tasks</button></a>
   </div>
 </div>
 
@@ -56,12 +56,12 @@
 
 <div class="center">
 
-  <a href="/groups/<%= @group.slug %>/edit"><button type="button">Edit/Delete Group</button></a>
+  <a href="/groups/<%= @group.id %>/edit"><button type="button">Edit/Delete Group</button></a>
   <% end %>
 
   <% if @group.members.include?(@user) %>
     <div class="form">
-      <form  action="/groups/<%= @group.slug %>/members" method="POST">
+      <form  action="/groups/<%= @group.id %>/members" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Leave Group">
       </form>

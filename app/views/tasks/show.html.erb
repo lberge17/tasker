@@ -4,7 +4,7 @@
 
 <h4>Todos</h4>
 
-<form action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos" method="POST">
+<form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="POST">
   <input type="hidden" name="_method" value="PATCH">
   <% @task.sub_tasks.each do |sub_task| %>
     <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>" <%= 'checked' if (sub_task.complete? == true) %>><%= sub_task.content %><br>
@@ -17,7 +17,7 @@
 
 <br><br>
 
-<a href="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/edit"><button type="button">Edit/Delete Task</button></a>
+<a href="/groups/<%= @group.id %>/tasks/<%= @task.id %>/edit"><button type="button">Edit/Delete Task</button></a>
 
 
 <br><br><form action="/logout" method="POST" class="center">

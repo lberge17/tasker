@@ -5,7 +5,7 @@
     <h2>Outstanding Tasks</h2>
     <% @group.tasks.each do |task| %>
       <% if task.complete? == false %>
-        <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
+        <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
 
         <% task.sub_tasks.each do |sub_task| %>
           <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>
@@ -17,7 +17,7 @@
     <h2>Completed Tasks</h2>
     <% @group.tasks.each do |task| %>
       <% if task.complete? == true %>
-        <h3><a href="/groups/<%= @group.slug %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
+        <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
 
         <% task.sub_tasks.each do |sub_task| %>
           <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>

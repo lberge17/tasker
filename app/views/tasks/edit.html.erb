@@ -3,7 +3,7 @@
 
   <h3>Edit Task Title:</h3>
   <div class="form">
-    <form  action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>" method="POST">
+    <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
       <input type="hidden" name="_method" value="PATCH">
       <label for="title">Change Task Title:</label><br>
       <input type="text" name="title" value="<%= @task.title %>"><br><br>
@@ -15,7 +15,7 @@
 
   <h3>Delete a Todo:</h3>
   <div class="form">
-    <form  action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/todos/delete" method="POST">
+    <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <% @task.sub_tasks.each do |sub_task| %>
         <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
@@ -29,7 +29,7 @@
   <h3>Delete Task:</h3>
   <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
   <div class="form">
-    <form action="/groups/<%= @group.slug %>/tasks/<%= @task.id %>/delete" method="POST">
+    <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <input type="submit" value="Delete Task">
     </form>

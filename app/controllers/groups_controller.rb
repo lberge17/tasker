@@ -21,11 +21,11 @@ class GroupsController < ApplicationController
     group = Group.create(params["group"])
     group.owner = current_user
     group.save
-    redirect "/groups/#{group.slug}"
+    redirect "/groups/#{group.id}"
   end
 
-  get "/groups/:slug" do
-    @group = Group.find_by_slug(params[:slug])
+  get "/groups/:id" do
+    @group = Group.find_by(id: params[:id])
     if logged_in? && in_group?(@group)
       @user = current_user
       erb :"/groups/show.html"
@@ -34,23 +34,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  patch "/groups/:slug/members" do
-    group = Group.find_by_slug(params[:slug])
+  patch "/groups/:id/members" do
+    group = Group.find_by(id: params[:id])
     user = User.find_by(username: params[:username])
     if user && !group.members.include?(user)
       group.members << user
     end
-    redirect "/groups/#{group.slug}"
+    redirect "/groups/#{group.id}"
   end
 
-  delete "/groups/:slug/members" do
-    group = Group.find_by_slug(params[:slug])
+  delete "/groups/:id/members" do
+    group = Group.find_by(params[:id])
     group.members.delete(User.find(current_user))
     redirect "/groups"
   end
 
-  get "/groups/:slug/edit" do
-    @group = Group.find_by_slug(params[:slug])
+  get "/groups/:id/edit" do
+    @group = Group.find_by(id: params[:id])
     if logged_in? && (@group.owner == current_user)
       erb :"/groups/edit.html"
     else
@@ -58,8 +58,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  patch "/groups/:slug" do
-    group = Group.find_by_slug(params[:slug])
+  patch "/groups/:id" do
+    group = Group.find_by(id: params[:id])
     user = User.find_by(username: params["username"])
 
     group.update(name: params["name"]) if !params["name"].empty?
@@ -73,11 +73,11 @@ class GroupsController < ApplicationController
       group.save
     end
 
-    redirect "/groups/#{group.slug}"
+    redirect "/groups/#{group.id}"
   end
 
-  delete "/groups/:slug/delete" do
-    group = Group.find_by_slug(params[:slug])
+  delete "/groups/:id/delete" do
+    group = Group.find_by(id: params[:id])
     group.tasks.each{|task| task.sub_tasks.destroy_all }
     group.tasks.destroy_all
     group.destroy
