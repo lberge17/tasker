@@ -18,10 +18,6 @@
     <% @group.tasks.each do |task| %>
       <% if task.complete? == true %>
         <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
-
-        <% task.sub_tasks.each do |sub_task| %>
-          <p><%= sub_task.content %> - <%= sub_task.complete? ? 'DONE' : 'still outstanding' %></p>
-        <% end %>
       <% end %>
     <% end %>
   </div>
