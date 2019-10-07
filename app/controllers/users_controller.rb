@@ -112,12 +112,11 @@ class UsersController < ApplicationController
 
       @user.update(params["user"])
 
-      if params["username"] && params["username"] != @user.username
-        user = User.find_by(username: params["username"])
-        if user
+      if params["new_username"] != @user.username
+        if User.find_by(username: params["new_username"])
           flash[:message] = "That username is already taken."
         else
-          @user.update(username: params["username"])
+          @user.update(username: params["new_username"])
         end
       end
 
