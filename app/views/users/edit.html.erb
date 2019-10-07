@@ -18,6 +18,9 @@
       <label for="new_username">Change Username:</label>
       <input type="text" name="new_username" value="<%= @user.username %>" pattern="[A-Za-z1-9]{5,}" title="Must be 5 or more characters, only letters and numbers"/><br><br>
 
+      <label for="email">Change Email:</label>
+      <input type="email" name="email" value="<%= @user.email %>"><br><br>
+
       <label>Change Password</label><br>
       <label for="old_password">Current Password:</label>
       <input type="password" name="old_password"><br>

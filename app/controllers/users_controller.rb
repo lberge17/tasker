@@ -113,10 +113,16 @@ class UsersController < ApplicationController
       @user.update(params["user"])
 
       if params["new_username"] != @user.username
-        if User.find_by(username: params["new_username"])
+        @user.update(username: params["new_username"])
+        if !@user.save
           flash[:message] = "That username is already taken."
-        else
-          @user.update(username: params["new_username"])
+        end
+      end
+
+      if params["email"] != @user.email
+        @user.update(email: params["email"])
+        if !@user.save
+          flash[:message] = "That email is already registered to an account."
         end
       end
 
