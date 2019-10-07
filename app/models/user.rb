@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :owned_groups, foreign_key: "owner_id", class_name: "Group"
   has_many :memberships
   has_many :groups, through: :memberships
-  has_many :sub_tasks
+  has_many :sub_tasks #eventually this will be called "assignments" need to add to migrations
 end
