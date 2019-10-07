@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-#  get "/users" do
-#    erb :"/users/index.html"
-#  end
-
   get "/signup" do
     if logged_in?
       redirect "users/#{current_user.username}"
@@ -16,7 +12,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect "users/#{current_user.username}"
     else
-      if !User.find_by(username: params["username"]) || !User.find_by(email: params["email"])
+      if !User.find_by(username: params["username"]) && !User.find_by(email: params["email"])
         if params["password"] == params["password_check"]
           user = User.create(:name => params["name"], :username => params["username"], :email => params["email"], :password => params["password"])
           if user.save
@@ -26,16 +22,16 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect "users/#{user.username}"
           else
-            #throw error to verify signup info
-            redirect '/signup'
+            flash[:message] = "Error: unable to sign you up. Please verify info and try again."
+            erb :"/users/new.html"
           end
         else
-          #create ever message saying passwords don't match
-          redirect '/signup'
+          flash[:message] = "Error: password fields don't match. Try again."
+          erb :"/users/new.html"
         end
       else
-        #throw error saying username is already taken or that email is already registered
-        redirect '/signup'
+        flash[:message] = "Error: username is already taken or the email already is registered to an account."
+        erb :"/users/new.html"
       end
     end
   end
