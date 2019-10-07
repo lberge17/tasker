@@ -1,5 +1,28 @@
 class UsersController < ApplicationController
 
+  get '/users/lookup' do
+    if logged_in?
+      erb :'users/index.html'
+    else
+      redirect '/'
+    end
+  end
+
+  post '/users/lookup' do
+    if params["user"].include?("@")
+      user = User.find_by(email: params["user"])
+    else
+      user = User.find_by(username: params["user"])
+    end
+
+    if user
+      redirect "/users/#{user.username}"
+    else
+      flash[:message] = "Could not find a user with that email/username."
+      erb :'/users/index.html'
+    end
+  end
+
   get "/signup" do
     if logged_in?
       redirect "users/#{current_user.username}"

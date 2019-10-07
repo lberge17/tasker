@@ -1,1 +1,13 @@
-<h1>User index page... probs not needed.</h1>
+<div class="center">
+  <h1>Lookup User</h1>
+
+  <% if flash.has?(:message) %>
+    <p class="red"><%= flash[:message] %></p>
+  <% end %>
+
+  <form action="/users/lookup" method="post">
+    <label for="user">username or email:</label>
+    <input type="text" name="user"><br>
+    <input type="submit" value="Look Up User">
+  </form>
+</div>
