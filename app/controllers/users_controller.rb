@@ -107,10 +107,33 @@ class UsersController < ApplicationController
   end
 
   patch "/users/:username" do
-    user = User.find_by(username: params["username"])
-    if user == current_user
-      user.update(params["user"])
-      redirect "/users/#{user.username}"
+    @user = User.find_by(username: params["username"])
+    if @user == current_user
+
+      @user.update(params["user"])
+
+      if params["username"] && params["username"] != @user.username
+        user = User.find_by(username: params["username"])
+        if user
+          flash[:message] = "That username is already taken."
+        else
+          @user.update(username: params["username"])
+        end
+      end
+
+      if !params["old_password"].empty? && !params["new_password"].empty?
+        if @user.authenticate(params["old_password"])
+          @user.update(password: params["new_password"])
+        else
+          flash[:message] = "Current password incorrect. Please try again."
+        end
+      end
+
+      if flash[:message]
+        erb :"/users/edit.html"
+      else
+        redirect "/users/#{@user.username}"
+      end
     else
       redirect '/'
     end
