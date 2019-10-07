@@ -6,12 +6,10 @@
     <% @group.tasks.each do |task| %>
       <% if task.complete? == false %>
         <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
-
-        <% task.sub_tasks.each do |sub_task| %>
-          <p><%= sub_task.content %> - <%= sub_task.complete? ? ' - DONE' : '' %></p>
-        <% end %>
       <% end %>
     <% end %>
+
+    <a href="/groups/<%= @group.id %>/tasks/new"><button type="button">Create New Task</button></a>
   </div>
   <div class="column">
     <h2>Completed Tasks</h2>
