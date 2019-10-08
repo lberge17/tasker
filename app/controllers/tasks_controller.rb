@@ -74,10 +74,15 @@ class TasksController < ApplicationController
     if !params["assignments"].empty?
       params["assignments"].each do |todo_id, username|
         todo = SubTask.find_by(id: todo_id)
-        user = User.find_by(username: username)
-        if todo && user && in_group?(group, user)
-          todo.assigned = user
+        if username == ""
+          todo.assigned = nil
           todo.save
+        else
+          user = User.find_by(username: username)
+          if todo && user && in_group?(group, user)
+            todo.assigned = user
+            todo.save
+          end
         end
       end
     end
