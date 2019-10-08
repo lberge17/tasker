@@ -7,11 +7,11 @@
       <ul>
         <form class="" action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="post">
           <input type="hidden" name="_method" value="PATCH">
-          <% @task.sub_tasks.each do |sub_task| %>
+          <% @task.todos.each do |todo| %>
             <li>
-              <label for="assignments">"<%= sub_task.content %>"</label>
+              <label for="assignments">"<%= todo.content %>"</label>
               <ul>
-                <li>assign to (username): <input type="text" name="assignments[<%= sub_task.id %>]" value="<%= sub_task.assigned.username if sub_task.assigned %>"></li>
+                <li>assign to (username): <input type="text" name="assignments[<%= todo.id %>]" value="<%= todo.assigned.username if todo.assigned %>"></li>
               </ul>
             </li>
             <br>
@@ -26,8 +26,8 @@
         <div class="form">
           <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
             <input type="hidden" name="_method" value="DELETE">
-            <% @task.sub_tasks.each do |sub_task| %>
-              <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
+            <% @task.todos.each do |todo| %>
+              <input type="checkbox" name="todo[]" value="<%= todo.id %>"><%= todo.content %><br>
             <% end %><br><br>
             <input type="submit" value="Delete">
           </form>

@@ -1,6 +1,6 @@
-class CreateSubTasks < ActiveRecord::Migration
+class CreateTodos < ActiveRecord::Migration
   def change
-    create_table :sub_tasks do |t|
+    create_table :todos do |t|
       t.string :content
       t.boolean :complete?
       t.integer :task_id

@@ -1,4 +1,4 @@
-class SubTask < ActiveRecord::Base
+class Todo < ActiveRecord::Base
   belongs_to :task
   belongs_to :assigned, class_name: "User"
 end

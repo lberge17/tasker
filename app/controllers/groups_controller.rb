@@ -78,7 +78,7 @@ class GroupsController < ApplicationController
 
   delete "/groups/:id/delete" do
     group = Group.find_by(id: params[:id])
-    group.tasks.each{|task| task.sub_tasks.destroy_all }
+    group.tasks.each{|task| task.todos.destroy_all }
     group.tasks.destroy_all
     group.destroy
     redirect "/groups"

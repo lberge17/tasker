@@ -104,7 +104,11 @@ class UsersController < ApplicationController
 
       if !params["old_password"].empty? && !params["new_password"].empty?
         if @user.authenticate(params["old_password"])
-          @user.update(password: params["new_password"])
+          if params["new_password"] == params["verify_password"]
+            @user.update(password: params["new_password"])
+          else
+            flash[:message] = "New password fields didn't match. Please try again."
+          end
         else
           flash[:message] = "Current password incorrect. Please try again."
         end
@@ -127,7 +131,7 @@ class UsersController < ApplicationController
 
       user.owned_groups.each do |owned_group|
         owned_group.tasks.each do |task|
-          task.sub_tasks.destroy_all
+          task.todos.destroy_all
         end
         owned_group.tasks.destroy_all
       end

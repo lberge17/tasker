@@ -16,9 +16,9 @@
 
     <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="POST">
       <input type="hidden" name="_method" value="PATCH">
-      <% @task.sub_tasks.each do |sub_task| %>
-        <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>" <%= 'checked' if (sub_task.complete? == true) %>><%= sub_task.content %>
-        <p class="right"> ---- assigned to: <%= sub_task.assigned ? sub_task.assigned.username : 'no one yet' %></p>
+      <% @task.todos.each do |todo| %>
+        <input type="checkbox" name="todo[]" value="<%= todo.id %>" <%= 'checked' if (todo.complete? == true) %>><%= todo.content %>
+        <p class="right"> ---- assigned to: <%= todo.assigned ? todo.assigned.username : 'no one yet' %></p>
       <% end %><br><br>
       <input type="checkbox" name="task" <%= 'checked' if (@task.complete? == true) %> class="center"> Mark entire task complete<br><br>
       <label for="content">Add todo:</label><br>

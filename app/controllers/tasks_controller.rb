@@ -24,13 +24,13 @@ class TasksController < ApplicationController
       task = Task.create(params["task"])
       task.update(complete?: false)
       if !params["todo_1"].empty?
-        task.sub_tasks << SubTask.create(content: params["todo_1"], complete?: false)
+        task.todos << Todo.create(content: params["todo_1"], complete?: false)
       end
       if !params["todo_2"].empty?
-        task.sub_tasks << SubTask.create(content: params["todo_2"], complete?: false)
+        task.todos << Todo.create(content: params["todo_2"], complete?: false)
       end
       if !params["todo_3"].empty?
-        task.sub_tasks << SubTask.create(content: params["todo_3"], complete?: false)
+        task.todos << Todo.create(content: params["todo_3"], complete?: false)
       end
       task.group = group
       task.save
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
 
     if params["assignments"] && !params["assignments"].empty?
       params["assignments"].each do |todo_id, username|
-        todo = SubTask.find_by(id: todo_id)
+        todo = Todo.find_by(id: todo_id)
         if username == ""
           todo.assigned = nil
           todo.save
@@ -90,20 +90,20 @@ class TasksController < ApplicationController
 
     if params["task"]
       task.update(complete?: true)
-      task.sub_tasks.update_all(complete?: true)
+      task.todos.update_all(complete?: true)
     else
-      task.sub_tasks.each do |sub_task|
-        if params["sub_task"] && params["sub_task"].include?(sub_task.id.to_s)
-          sub_task.update(complete?: true)
+      task.todos.each do |todo|
+        if params["todo"] && params["todo"].include?(todo.id.to_s)
+          todo.update(complete?: true)
         else
-          sub_task.update(complete?: false)
+          todo.update(complete?: false)
         end
       end
       task.update(complete?: false)
     end
 
     if params["content"] && !params["content"].empty?
-      todo = SubTask.create(content: params["content"])
+      todo = Todo.create(content: params["content"])
       todo.task = task
       todo.save
     end
@@ -115,7 +115,7 @@ class TasksController < ApplicationController
     group = Group.find_by(id: params[:id])
     group.tasks.each do |task|
       if task.complete? == true
-        task.sub_tasks.destroy_all
+        task.todos.destroy_all
         task.destroy
       end
     end
@@ -125,7 +125,7 @@ class TasksController < ApplicationController
   delete "/groups/:id/tasks/:task_id/delete" do
     group = Group.find_by(id: params[:id])
     task = Task.find_by(id: params[:task_id])
-    task.sub_tasks.destroy_all
+    task.todos.destroy_all
     task.destroy
 
     redirect "/groups/#{group.id}/tasks"
@@ -135,9 +135,9 @@ class TasksController < ApplicationController
     group = Group.find_by(id: params[:id])
     task = Task.find_by(id: params[:task_id])
 
-    if params["sub_task"]
-      params["sub_task"].each do |id|
-        SubTask.find(id.to_i).destroy
+    if params["todo"]
+      params["todo"].each do |id|
+        Todo.find(id.to_i).destroy
       end
     end
 

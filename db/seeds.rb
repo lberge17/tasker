@@ -41,21 +41,21 @@ parks_team.members = [ron, ann, andy, april, ben, tom]
 parks_team.save
 
 halloween_party = Task.create(title: "Halloween Party", complete?: false)
-decor = SubTask.create(content: "buy decorations", complete?: false)
-food = SubTask.create(content: "make spooky food", complete?: false)
-host = SubTask.create(content: "convince Ron to let us host at his place", complete?: false)
-costumes = SubTask.create(content: "make sure Leslie has the best costume", complete?: false)
+decor = Todo.create(content: "buy decorations", complete?: false)
+food = Todo.create(content: "make spooky food", complete?: false)
+host = Todo.create(content: "convince Ron to let us host at his place", complete?: false)
+costumes = Todo.create(content: "make sure Leslie has the best costume", complete?: false)
 
-halloween_party.sub_tasks = [decor, food, host, costumes]
+halloween_party.todos = [decor, food, host, costumes]
 halloween_party.group = parks_team
 halloween_party.save
 
 clean_park = Task.create(title: "Clean up Park by Ann's House", complete?: false)
-town_hall = SubTask.create(content: "host a town hall", complete?: false)
-tools = SubTask.create(content: "pick up proper tools", complete?: false)
-fundraising = SubTask.create(content: "canvas town for more funding", complete?: false)
-labor = SubTask.create(content: "go to work and clean that park!", complete?: false)
+town_hall = Todo.create(content: "host a town hall", complete?: false)
+tools = Todo.create(content: "pick up proper tools", complete?: false)
+fundraising = Todo.create(content: "canvas town for more funding", complete?: false)
+labor = Todo.create(content: "go to work and clean that park!", complete?: false)
 
-clean_park.sub_tasks = [town_hall, tools, fundraising, labor]
+clean_park.todos = [town_hall, tools, fundraising, labor]
 clean_park.group = parks_team
 clean_park.save
