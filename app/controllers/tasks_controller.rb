@@ -20,8 +20,9 @@ class TasksController < ApplicationController
 
   post "/groups/:id/tasks" do
     group = Group.find_by(id: params[:id])
-    if !params["title"].empty?
-      task = Task.create(title: params["title"], complete?: false)
+    if !params["task"].empty?
+      task = Task.create(params["task"])
+      task.update(complete?: false)
       if !params["todo_1"].empty?
         task.sub_tasks << SubTask.create(content: params["todo_1"], complete?: false)
       end
