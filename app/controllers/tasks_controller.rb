@@ -71,6 +71,17 @@ class TasksController < ApplicationController
     group = Group.find_by(id: params[:id])
     task = Task.find_by(id: params[:task_id])
 
+    if !params["assignments"].empty?
+      params["assignments"].each do |todo_id, username|
+        todo = SubTask.find_by(id: todo_id)
+        user = User.find_by(username: username)
+        if todo && user && in_group?(group, user)
+          todo.assigned = user
+          todo.save
+        end
+      end
+    end
+
     if params["task"]
       task.update(complete?: true)
       task.sub_tasks.update_all(complete?: true)

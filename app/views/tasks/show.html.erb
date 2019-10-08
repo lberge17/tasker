@@ -8,8 +8,8 @@
   <input type="hidden" name="_method" value="PATCH">
   <% @task.sub_tasks.each do |sub_task| %>
     <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>" <%= 'checked' if (sub_task.complete? == true) %>><%= sub_task.content %>
-    <label for="assignments">-- assign to (username): </label>
-    <input type="text" name="assignments[<%= sub_task.id %>]" value="<%= sub_task.assigned_to %>"><br>
+    <label for="assignments"> ---- assign to (username): </label>
+    <input type="text" name="assignments[<%= sub_task.id %>]" value="<%= sub_task.assigned.username if sub_task.assigned %>"><br>
   <% end %><br>
   <input type="checkbox" name="task" <%= 'checked' if (@task.complete? == true) %>>Entire task complete<br><br>
   <label for="content">Add todo:</label><br>

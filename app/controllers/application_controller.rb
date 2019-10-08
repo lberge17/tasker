@@ -32,8 +32,8 @@ class ApplicationController < Sinatra::Base
       User.find_by(id: session[:user_id])
     end
 
-    def in_group?(group)
-      group.members.include?(current_user) || group.owner == current_user
+    def in_group?(group, user = current_user)
+      group.members.include?(user) || group.owner == user
     end
   end
 end
