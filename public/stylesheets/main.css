@@ -19,12 +19,11 @@ header::after {
 }
 
 .logo {
+  height: 40px;
   border: 3px solid #003463;
-  height: 90px;
-  margin: 2px;
-  float: left;
 }
 
+/*
 nav {
   float: right;
 }
@@ -61,6 +60,7 @@ nav a::before {
   left: 0;
   right: 0;
 }
+*/
 
 .center {
   text-align: center;
