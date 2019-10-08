@@ -66,6 +66,14 @@ nav a::before {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
 .wrapper {
   padding-left: 10%;
   padding-right: 10%

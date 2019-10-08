@@ -1,44 +1,66 @@
 <div class="center">
   <h1>Edit Task:</h1>
 
-  <h3>Edit Task Title:</h3>
-  <div class="form">
-    <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
-      <input type="hidden" name="_method" value="PATCH">
-      <label for="title">Change Task Title:</label><br>
-      <input type="text" name="title" value="<%= @task.title %>"><br><br>
-      <input type="submit" value="Change Title">
-    </form>
+  <div class="row">
+    <div class="column left">
+      <h3>Assign Todos</h3>
+      <ul>
+        <form class="" action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="post">
+          <input type="hidden" name="_method" value="PATCH">
+          <% @task.sub_tasks.each do |sub_task| %>
+            <li>
+              <label for="assignments">"<%= sub_task.content %>"</label>
+              <ul>
+                <li>assign to (username): <input type="text" name="assignments[<%= sub_task.id %>]" value="<%= sub_task.assigned.username if sub_task.assigned %>"></li>
+              </ul>
+            </li>
+            <br>
+          <% end %>
+          <input type="submit" value="Update Assignments">
+        </form>
+      </ul>
+
+      <% if @group.owner == current_user %>
+        <br><br>
+        <h3>Delete a Todo:</h3>
+        <div class="form">
+          <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <% @task.sub_tasks.each do |sub_task| %>
+              <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
+            <% end %><br><br>
+            <input type="submit" value="Delete">
+          </form>
+        </div>
+      <% end %>
+      <br><br>
+    </div>
+
+    <div class="column left">
+      <h3>Edit Task Title:</h3>
+      <div class="form">
+        <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
+          <input type="hidden" name="_method" value="PATCH">
+          <label for="title">Change Task Title:</label><br>
+          <input type="text" name="title" value="<%= @task.title %>"><br><br>
+          <input type="submit" value="Change Title">
+        </form>
+      </div><br><br>
+
+      <% if @group.owner == current_user %>
+
+        <h3>Delete Task:</h3>
+        <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
+        <div class="form">
+          <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Task">
+          </form>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-
-  <% if @group.owner == current_user %>
-
-    <br><br>
-
-    <h3>Delete a Todo:</h3>
-    <div class="form">
-      <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <% @task.sub_tasks.each do |sub_task| %>
-          <input type="checkbox" name="sub_task[]" value="<%= sub_task.id %>"><%= sub_task.content %><br>
-        <% end %><br><br>
-        <input type="submit" value="Delete">
-      </form>
-    </div>
-
-    <br><br>
-
-    <h3>Delete Task:</h3>
-    <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
-    <div class="form">
-      <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete Task">
-      </form>
-    </div>
-
-  <% end %>
-
 </div>
 
 
