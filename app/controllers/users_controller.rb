@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect "users/#{current_user.username}"
+      redirect "/"
     else
       erb :"/users/new.html"
     end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   post "/signup" do
     if logged_in?
-      redirect "users/#{current_user.username}"
+      redirect "/"
     else
       if !User.find_by(username: params["username"]) && !User.find_by(email: params["email"])
         if params["password"] == params["password_check"]
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             private_group.owner = user
             private_group.save
             session[:user_id] = user.id
-            redirect "users/#{user.username}"
+            redirect "/"
           else
             flash[:message] = "Error: unable to sign you up. Please verify info and try again."
             erb :"/users/new.html"

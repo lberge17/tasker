@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect "users/#{current_user.username}"
+      redirect "/"
     else
       erb :"/sessions/login.html"
     end
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params["username"])
     if user && user.authenticate(params["password"])
       session[:user_id] = user.id
-      redirect "users/#{user.username}"
+      redirect "/"
     else
       flash[:message] = "Invalid login"
       erb :"/sessions/login.html"
