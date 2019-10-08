@@ -66,6 +66,10 @@ nav a::before {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
 p.right {
   text-align: right;
 }
