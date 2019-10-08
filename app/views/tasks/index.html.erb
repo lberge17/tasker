@@ -18,13 +18,13 @@
       <% end %>
     <% end %>
 
-    <% @group.owner == current_user %>
+    <% if @group.owner == current_user %>
       <form action="/groups/<%= @group.id %>/tasks/complete/delete" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete All Completed Tasks">
       </form>
     <% end %>
-    
+
   </div>
 </div>
 
