@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20191003120036) do
     t.string   "content"
     t.boolean  "complete?"
     t.integer  "task_id"
-    t.integer  "assigned_to_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "assigned_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tasks", force: :cascade do |t|
