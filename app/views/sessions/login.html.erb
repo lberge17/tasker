@@ -2,6 +2,10 @@
   <h1>Welcome back to Tasker!</h1>
   <h2>Log In</h2>
 
+  <% if flash.has?(:message) %>
+    <p class="red"><%= flash[:message] %></p>
+  <% end %>
+
   <div class="form">
     <form action="/login" method="POST">
       <input type="text" name="username" placeholder="username"><br>

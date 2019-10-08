@@ -10,3 +10,4 @@ run ApplicationController
 use TasksController
 use GroupsController
 use UsersController
+use SessionsController

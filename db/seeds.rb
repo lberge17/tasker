@@ -1,10 +1,10 @@
-ron = User.create(name: "Ron Swanson", username: "rswanson7", email: "ron@parks.com", password: "rspass")
-leslie = User.create(name: "Leslie Knope", username: "lknope5", email: "leslie@parks.com", password: "lkpass")
-ann = User.create(name: "Ann Perkins", username: "aperkins8", email: "ann@parks.com", password: "appass")
-tom = User.create(name: "Tom Haverford", username: "tommyboy", email: "tom@parks.com", password: "thpass")
-april = User.create(name: "April Ludgate", username: "janetsnakehole", email: "april@ludgate.com", password: "alpass")
-andy = User.create(name: "Andy Dwyer", username: "burtmacklinFBI", email: "andy@parks.com", password: "adpass")
-ben = User.create(name: "Ben Wyatt", username: "bwyatt7", email: "ben@parks.com", password: "bwpass")
+ron = User.create(name: "Ron Swanson", username: "rswanson7", email: "ron@parks.com", password: "rspass", location: "Pawnee, IN", bio: "Libertarian. I will probably never use this app but thanks to Leslie, the government now has even more info about me...")
+leslie = User.create(name: "Leslie Knope", username: "lknope5", email: "leslie@parks.com", password: "lkpass", location: "Pawnee, IN", bio: "Parks and Rec. One day I'll be the first woman president.")
+ann = User.create(name: "Ann Perkins", username: "aperkins8", email: "ann@parks.com", password: "appass", location: "Pawnee, IN", bio: "I'm Ann Perkins. I'm a nurse. Relationship status: always complicated.")
+tom = User.create(name: "Tom Haverford", username: "tommyboy", email: "tom@parks.com", password: "thpass", location: "Pawnee, IN", bio: "Treat yo self.")
+april = User.create(name: "April Ludgate", username: "janetsnakehole", email: "april@ludgate.com", password: "alpass", location: "Pawnee, IN", bio: "This is stupid. Leslie is stupid.")
+andy = User.create(name: "Andy Dwyer", username: "burtmacklinFBI", email: "andy@parks.com", location: "Pawnee, IN", password: "adpass", bio: "There's only one man for any dangerous job... and that's Burt Macklin, FBI. Lol jk. Leslie made me make this account. Also feel free to reach out to my email to book my band. It's awesome. Check us out. Formerly known as Mouse Rat. Currently looking for a new band name.")
+ben = User.create(name: "Ben Wyatt", username: "bwyatt7", email: "ben@parks.com", password: "bwpass", location: "Pawnee, IN", bio: "I love Leslie. Leslie - this was a great idea honey! You're gonna make a great president one day. Very organized.")
 
 
 ron_private = Group.create(name: "My Tasks")

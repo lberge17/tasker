@@ -1,29 +1,6 @@
 class UsersController < ApplicationController
 
-  get '/users/lookup' do
-    if logged_in?
-      erb :'users/index.html'
-    else
-      redirect '/'
-    end
-  end
-
-  post '/users/lookup' do
-    if params["user"].include?("@")
-      user = User.find_by(email: params["user"])
-    else
-      user = User.find_by(username: params["user"])
-    end
-
-    if user
-      redirect "/users/#{user.username}"
-    else
-      flash[:message] = "Could not find a user with that email/username."
-      erb :'/users/index.html'
-    end
-  end
-
-  get "/signup" do
+  get '/signup' do
     if logged_in?
       redirect "users/#{current_user.username}"
     else
@@ -59,28 +36,27 @@ class UsersController < ApplicationController
     end
   end
 
-  get "/login" do
+  get '/users/lookup' do
     if logged_in?
-      redirect "users/#{current_user.username}"
+      erb :'users/index.html'
     else
-      erb :"/users/login.html"
+      redirect '/'
     end
   end
 
-  post "/login" do
-    user = User.find_by(username: params["username"])
-    if user && user.authenticate(params["password"])
-      session[:user_id] = user.id
-      redirect "users/#{user.username}"
+  post '/users/lookup' do
+    if params["user"].include?("@")
+      user = User.find_by(email: params["user"])
     else
-      #throw invalid login error
-      redirect "/login"
+      user = User.find_by(username: params["user"])
     end
-  end
 
-  post '/logout' do
-    session.clear
-    redirect '/login'
+    if user
+      redirect "/users/#{user.username}"
+    else
+      flash[:message] = "Could not find a user with that email/username."
+      erb :'/users/index.html'
+    end
   end
 
   get "/users/:username" do
