@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     group = Group.find_by(id: params[:id])
     task = Task.find_by(id: params[:task_id])
 
-    task.update(title: params["title"])
+    task.update(params["task"])
 
 
     redirect "/groups/#{group.id}/tasks/#{task.id}"

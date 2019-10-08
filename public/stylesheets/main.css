@@ -66,11 +66,7 @@ nav a::before {
   text-align: center;
 }
 
-.left {
-  text-align: left;
-}
-
-.right {
+p.right {
   text-align: right;
 }
 

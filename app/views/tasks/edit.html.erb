@@ -37,13 +37,20 @@
     </div>
 
     <div class="column left">
-      <h3>Edit Task Title:</h3>
+      <h3>Edit Task:</h3>
       <div class="form">
         <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
           <input type="hidden" name="_method" value="PATCH">
-          <label for="title">Change Task Title:</label><br>
-          <input type="text" name="title" value="<%= @task.title %>"><br><br>
-          <input type="submit" value="Change Title">
+          <label for="task[title]">Change Task Title:</label><br>
+          <input type="text" name="task[title]" value="<%= @task.title %>"><br><br>
+
+          <label for="task[deadline]">Change Deadline:</label><br>
+          <input type="text" name="task[deadline]" value="<%= @task.deadline %>"><br><br>
+
+          <label for="task[description]">Change description:</label><br>
+          <textarea name="task[description]" rows="8" cols="80"><%= @task.description %></textarea><br><br>
+
+          <input type="submit" value="Update Task">
         </form>
       </div><br><br>
 
