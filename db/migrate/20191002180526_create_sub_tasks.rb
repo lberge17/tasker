@@ -4,7 +4,7 @@ class CreateSubTasks < ActiveRecord::Migration
       t.string :content
       t.boolean :complete?
       t.integer :task_id
-      t.integer :user_id
+      t.integer :assigned_to_id
       t.timestamps null: false
     end
   end
