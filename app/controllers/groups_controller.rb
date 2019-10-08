@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
   end
 
   delete "/groups/:id/members" do
-    group = Group.find_by(params[:id])
+    group = Group.find_by(id: params[:id])
     group.members.delete(User.find(current_user))
     redirect "/groups"
   end

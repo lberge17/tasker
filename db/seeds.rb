@@ -7,31 +7,31 @@ andy = User.create(name: "Andy Dwyer", username: "burtmacklinFBI", email: "andy@
 ben = User.create(name: "Ben Wyatt", username: "bwyatt7", email: "ben@parks.com", password: "bwpass", location: "Pawnee, IN", bio: "I love Leslie. Leslie - this was a great idea honey! You're gonna make a great president one day. Very organized.")
 
 
-ron_private = Group.create(name: "My Tasks")
+ron_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 ron_private.owner = ron
 ron_private.save
 
-leslie_private = Group.create(name: "My Tasks")
+leslie_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 leslie_private.owner = leslie
 leslie_private.save
 
-ann_private = Group.create(name: "My Tasks")
+ann_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 ann_private.owner = ann
 ann_private.save
 
-tom_private = Group.create(name: "My Tasks")
+tom_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 tom_private.owner = tom
 tom_private.save
 
-april_private = Group.create(name: "My Tasks")
+april_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 april_private.owner = april
 april_private.save
 
-andy_private = Group.create(name: "My Tasks")
+andy_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 andy_private.owner = andy
 andy_private.save
 
-ben_private = Group.create(name: "My Tasks")
+ben_private = Group.create(name: "My Tasks", info: "Your personal task group. Feel free to customize however you choose.")
 ben_private.owner = ben
 ben_private.save
 
