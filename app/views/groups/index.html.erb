@@ -1,7 +1,7 @@
-<h1 class="center">Your groups:</h1>
+<h1 class="text-center">Your groups:</h1>
 
 <div class="row">
-  <div class="column center">
+  <div class="column text-center">
     <h3>Owned Groups:</h3>
     <% @user.owned_groups.each do |group| %>
       <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
@@ -14,7 +14,7 @@
     <a href="/groups/new"><button type="button">Create New Group</button></a>
   </div>
 
-  <div class="column center">
+  <div class="column text-center">
     <h3>Groups you are a member of:</h3>
     <% @user.groups.each do |group| %>
       <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
@@ -31,6 +31,6 @@
 
 
 
-<br><br><form action="/logout" method="POST" class="center">
+<br><br><form action="/logout" method="POST" class="text-center">
   <input type="submit" value="Log Out">
 </form>

@@ -1,8 +1,8 @@
-<div class="center">
+<div class="text-center">
   <h1>Edit Your Profile</h1>
 
   <% if flash.has?(:message) %>
-    <p class="red"><%= flash[:message] %></p>
+    <p class="text-danger"><%= flash[:message] %></p>
   <% end %>
 
   <div class="edit-profile">
@@ -47,6 +47,6 @@
 </div>
 
 
-<br><br><form action="/logout" method="POST" class="center">
+<br><br><form action="/logout" method="POST" class="text-center">
   <input type="submit" value="Log Out">
 </form>
