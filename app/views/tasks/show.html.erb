@@ -1,42 +1,43 @@
-<h1 class="text-center"><%= @group.name %></h1>
-
-<h2 class="text-center"><%= @task.title %></h2>
+<br><h1 class="text-center"><%= @group.name %></h1><br>
 
 <div class="row">
-  <div class="column">
-    <h3>Deadline</h3>
+  <div class="col-sm mr-3 ml-3">
+    <h4>Title:</h4>
+    <p><%= @task.title %></p>
+    <h4>Deadline:</h4>
     <p><%= @task.deadline %></p>
 
-    <h3>Description</h3>
+    <h4>Description:</h4>
     <p><%= @task.description %></p>
   </div>
 
-  <div class="column text-center">
-    <h4>Todos</h4>
+  <div class="col-md text-center mr-3 ml-3">
+    <div class="container-fluid shadow-lg p-3 mb-5 bg-white rounded">
+      <h4>Todos</h4>
 
-    <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="POST">
-      <input type="hidden" name="_method" value="PATCH">
-      <% @task.todos.each do |todo| %>
-        <input type="checkbox" name="todo[]" value="<%= todo.id %>" <%= 'checked' if (todo.complete? == true) %>><%= todo.content %>
-        <p class="right"> ---- assigned to: <%= todo.assigned ? todo.assigned.username : 'no one yet' %></p>
-      <% end %><br><br>
-      <input type="checkbox" name="task" <%= 'checked' if (@task.complete? == true) %> class="center"> Mark entire task complete<br><br>
-      <label for="content">Add todo:</label><br>
-      <input type="text" name="content"><br><br>
-      <input type="submit" value="Update">
-    </form>
+      <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <% @task.todos.each do |todo| %>
+          <input type="checkbox" name="todo[]" value="<%= todo.id %>" <%= 'checked' if (todo.complete? == true) %>><%= todo.content %>
+          <p class="right"> ---- assigned to: <%= todo.assigned ? todo.assigned.username : 'no one yet' %></p>
+        <% end %><br><br>
+        <input type="checkbox" name="task" <%= 'checked' if (@task.complete? == true) %> class="center"> Mark entire task complete<br><br>
+        <label for="content">Add todo:</label><br>
+        <input type="text" name="content"><br><br>
+        <input type="submit" value="Update" class="btn btn-info">
+      </form>
+    </div>
   </div>
 </div>
 
-<br>
+<br><br>
 
-<a href="/groups/<%= @group.id %>/tasks"><button type="button">Back to Tasks</button></a>
+<div class="text-center">
+  <a href="/groups/<%= @group.id %>/tasks"><button type="button" class="btn btn-info">Back to Tasks</button></a><br><br>
 
-<br>
+  <a href="/groups/<%= @group.id %>/tasks/<%= @task.id %>/edit"><button type="button" class="btn btn-info">Edit Task</button></a><br><br>
 
-<a href="/groups/<%= @group.id %>/tasks/<%= @task.id %>/edit"><button type="button">Edit Task</button></a>
-
-
-<br><br><form action="/logout" method="POST" class="center">
-  <input type="submit" value="Log Out">
-</form>
+  <br><form action="/logout" method="POST">
+    <input type="submit" value="Log Out">
+  </form>
+</div>
