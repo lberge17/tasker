@@ -13,12 +13,13 @@ create a profile with Tasker, you automatically get a group called "My Tasks"
 that is meant to contain any personal tasks you may have.
 You can change the name of this group to anything you wish, add members if you choose,
 or even delete it. You can create new groups and title them as you wish. Within
-any of your groups, you can create tasks.
+any of your groups, you can create tasks. See the about page of the app or the about file
+(app/views/about.html.erb) for more information.
 
 
 ## Install Instructions
 
- If you want to run Tasker, feel free to fork and clone this repo. Make sure to
+If you want to run Tasker, feel free to fork and clone this repo. Make sure to
 run both:
 
 bundle install

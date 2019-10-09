@@ -31,9 +31,7 @@
       <label for="verify_password">Re-Enter New Password:</label>
       <input type="password" name="verify_password"><br><br>
 
-
-
-      <input type="submit" value="Edit Profile">
+      <input type="submit" value="Edit Profile" class="btn btn-info">
     </form>
   </div>
 
@@ -42,7 +40,7 @@
   <div class="delete-profile">
     <form action="/users/<%= @user.username %>/delete" method="POST">
       <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Profile">
+      <input type="submit" value="Delete Profile" class="btn btn-danger">
     </form>
   </div>
 
