@@ -15,7 +15,7 @@
       <label for="location">Location:</label>
       <input type="text" name="user[location]" value="<%= @user.location %>" id="location"><br><br>
       <label for="bio">Bio:</label><br>
-      <textarea name="user[bio]" rows="10" cols="40" id="bio"><%= @user.bio %></textarea><br><br>
+      <textarea name="user[bio]" rows="10" style="width:100%;" id="bio"><%= @user.bio %></textarea><br><br>
 
       <label for="new_username">Change Username:</label>
       <input type="text" name="new_username" value="<%= @user.username %>" pattern="[A-Za-z0-9]{5,}" title="Must be 5 or more characters, only letters and numbers"/><br><br>
