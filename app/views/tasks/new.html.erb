@@ -1,26 +1,35 @@
-<h1>Form to create a new task.</h1>
+<div class="row container-fluid">
+  <div class="col-sm">
 
-<div class="create-task">
-  <p>Create a new task by first giving it a title, and then add "todos" or items to check off.</p>
-  <p>If you need more than 3 "todos" you can add them later :)</p>
-  <form action="/groups/<%= @group.id %>/tasks" method="POST">
-    <label for="task[title]">Main Title:</label><br>
-    <input type="text" name="task[title]"><br>
-    <label for="deadlind">Deadline:</label><br>
-    <input type="text" name="task[deadline]"><br>
-    <label for="task[description]">Description:</label><br>
-    <textarea name="task[description]" rows="8" cols="80"></textarea><br><br>
+  </div>
+  <div class="col-md">
+    <br><h1 class="text-center">Form to create a new task.</h1>
+    <hr>
+    <p>Create a new task by first giving it a title, and then add "todos" or items to check off.</p>
+    <p>If you need more than 3 "todos" you can add them later :)</p>
+    <form action="/groups/<%= @group.id %>/tasks" method="POST">
+      <label for="task[title]">Main Title:</label><br>
+      <input type="text" name="task[title]"><br>
+      <label for="deadlind">Deadline:</label><br>
+      <input type="text" name="task[deadline]"><br>
+      <label for="task[description]">Description:</label><br>
+      <textarea name="task[description]" rows="8" cols="80"></textarea><br><br>
 
-    <label for="todo_1">Todo 1:</label>
-    <input type="text" name="todo_1"><br><br>
-    <label for="todo_2">Todo 2:</label>
-    <input type="text" name="todo_2"><br><br>
-    <label for="todo_3">Todo 3:</label>
-    <input type="text" name="todo_3"><br><br>
-    <input type="submit" value="Create Task">
-  </form>
+      <label for="todo_1">Todo 1:</label>
+      <input type="text" name="todo_1"><br><br>
+      <label for="todo_2">Todo 2:</label>
+      <input type="text" name="todo_2"><br><br>
+      <label for="todo_3">Todo 3:</label>
+      <input type="text" name="todo_3"><br><br>
+      <div class="text-center">
+        <input type="submit" value="Create Task" class="btn btn-info btn-lg">
+      </div>
+    </form>
+  </div>
+  <div class="col-sm">
+
+  </div>
 </div>
-
 
 <br><br><form action="/logout" method="POST" class="text-center">
   <input type="submit" value="Log Out">
