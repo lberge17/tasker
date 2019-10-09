@@ -1,17 +1,51 @@
-<h1 class="text-center">Tasker Profile</h1>
+<div class="container-fluid">
+  <br>
+  <h1 class="text-center">Tasker Profile</h1>
+  <hr>
+  <div class="row">
+    <div class="col-sm">
+      <div class="card mx-auto" style="width: 18rem;">
+        <img src="/images/profile-placeholder.jpg" class="card-img-top profile-ph" alt="profile img placeholder">
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.name %></h5>
+          <hr>
+          <p class="card-text">Username: <%= @user.username %></p>
+          <p class="card-text">Email: <%= @user.email %></p>
+          <p class="card-text">Location: <%= @user.location %></p>
+          <p class="card-text">Bio: <%= @user.bio %></p>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="col-md">
+      <div class="container-fluid shadow-lg p-3 mb-5 bg-white rounded">
+        <br>
+        <h3>GROUPS</h3>
+        <hr>
+        <ul>
+          <% @user.owned_groups.each do |group| %>
+            <li class="font-weight-bolder"><%= group.name %></li>
+          <% end %>
+          <% @user.groups.each do |group| %>
+            <li><%= group.name %></li>
+          <% end %>
+        </ul>
+        <br>
+      </div>
+      <br>
+    </div>
+  </div>
 
-<p>Name: <%= @user.name %></p>
-<p>Username: <%= @user.username %></p>
-<p>Email: <%= @user.email %></p>
-<p>Location: <%= @user.location %></p>
-<p>Bio: <%= @user.bio %></p>
+  <div class="text-center">
+    <% if @user == current_user %>
+      <a href="/users/<%= @user.username %>/edit"><button type="button">Edit your profile</button></a>
+    <% end %>
 
-<% if @user == current_user %>
-  <a href="/users/<%= @user.username %>/edit"><button type="button">Edit your profile</button></a>
-<% end %>
+    <br><br>
 
-<br><br>
+    <form action="/logout" method="POST" class="text-center">
+      <input type="submit" value="Log Out">
+    </form>
+  </div>
 
-<form action="/logout" method="POST" class="text-center">
-  <input type="submit" value="Log Out">
-</form>
+</div>
