@@ -1,24 +1,38 @@
-<div class="center">
-  <h1>Welcome to Tasker!</h1>
-  <h2>Sign Up</h2>
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-3 col-sm-3 col-xs-12"></div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="signup-form text-center">
+        <h1>Welcome to Tasker!</h1>
+        <h2>Sign Up</h2>
 
+        <% if flash.has?(:message) %>
+          <p class="text-danger"><%= flash[:message] %></p>
+        <% end %>
 
-  <% if flash.has?(:message) %>
-    <p class="red"><%= flash[:message] %></p>
-  <% end %>
-
-
-  <div class="form">
-    <form action="/signup" method="POST">
-      <input type="text" name="name" placeholder="Your name"><br>
-      <input type="text" pattern="[A-Za-z0-9]{5,}" name="username" placeholder="username" title="Must be 5 or more characters, only letters and numbers"/><br>
-      <input type="email" name="email" placeholder="email"><br>
-      <input type="password" name="password" placeholder="password"><br>
-      <input type="password" name="password_check" placeholder="retype password"><br><br>
-      <input type="submit" value="Sign Up!">
-    </form>
+        <div>
+          <form action="/signup" method="POST">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your name">
+            </div>
+            <div class="form-group"
+              <input type="text" pattern="[A-Za-z0-9]{5,}" name="username" placeholder="username" title="Must be 5 or more characters, only letters and numbers"/>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="email">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" placeholder="password">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password_check" placeholder="retype password"><br><br>
+            </div>
+            <input type="submit" value="Sign Up!" class="btn btn-primary btn-block">
+          </form>
+          <br><p>If you already have an account, <a href="/login">Log In</a> here.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12"></div>
   </div>
-
-
-  <br><p>If you already have an account, <a href="/login">Log In</a> here.</p><br>
 </div>

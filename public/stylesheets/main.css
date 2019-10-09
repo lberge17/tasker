@@ -7,95 +7,22 @@ body {
   margin: 0 auto;
 }
 
-header {
-  background-color: #05A89C;
-  height: 100px;
-}
-
-header::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
 .logo {
-  height: 40px;
-  border: 3px solid #003463;
+  height: 70px;
+  border: 2px solid black;
 }
 
-/*
-nav {
-  float: right;
-}
-
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-nav li {
-  display: inline-block;
-  margin-left: 50px;
-  padding-top: 40px;
-  position: relative;
-}
-
-nav a {
-  color: #003463;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: white;
-}
-
-nav a::before {
-  content: "";
-  display: block;
-  height: 2px;
+.bg {
+  background: url("/images/abstract-texture.jpg") no-repeat center;
   width: 100%;
-  background-color: #003463;
-  left: 0;
-  right: 0;
-}
-*/
-
-.center {
-  text-align: center;
+  height: 100vh;
+  background-size: cover;
 }
 
-.left {
-  text-align: left;
-}
-
-p.right {
-  text-align: right;
-}
-
-.wrapper {
-  padding-left: 10%;
-  padding-right: 10%
-}
-
-.branding {
-  border-top: 1px solid black;
-  padding: 2%;
-  margin: 5%;
-}
-
-.column {
-  float: left;
-  width: 50%;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.red {
-  color: red;
+.signup-form {
+   padding: 50px 60px;
+   margin-top: 10vh;
+   -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+   -moz-box-shadow:    -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Firefox 3.5 - 3.6 */
+   box-shadow:         -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
