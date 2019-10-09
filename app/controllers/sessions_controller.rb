@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
   end
 
   post "/login" do
-    user = User.find_by(username: params["username"])
+    if params["username_email"].include?("@")
+      user = User.find_by(email: params["username_email"])
+    else
+      user = User.find_by(username: params["username_email"])
+    end
     if user && user.authenticate(params["password"])
       session[:user_id] = user.id
       redirect "/"
