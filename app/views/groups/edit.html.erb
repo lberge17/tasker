@@ -10,7 +10,7 @@
       <textarea name="info" rows="8" cols="80"><%= @group.info %></textarea><br>
       <label for="username">Transfer Ownership (by username):</label><br>
       <input type="text" name="username"><br><br>
-      <input type="submit" value="Update Group">
+      <input type="submit" value="Update Group" class="btn btn-info">
     </form>
   </div>
 
@@ -20,7 +20,7 @@
   <div class="form">
     <form action="/groups/<%= @group.id %>/delete" method="POST">
       <input type="hidden" name="_method" value="DELETE">
-      <input type="submit" value="Delete Group">
+      <input type="submit" value="Delete Group" class="btn btn-danger">
     </form>
   </div>
 
