@@ -1,36 +1,31 @@
-<h1 class="text-center">Your groups:</h1>
-
-<div class="row">
-  <div class="column text-center">
-    <h3>Owned Groups:</h3>
-    <% @user.owned_groups.each do |group| %>
-      <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
-      <ul>
-        <% group.tasks do |task| %>
-          <li><a href="/tasks/<%= task.id %>"><%= task.title %></a></li>
+<div class="container-fluid">
+  <br>
+  <h1 class="text-center">Your groups:</h1>
+  <br>
+  <div class="row">
+    <div class="col-md">
+      <ul class="list-group">
+        <li class="list-group-item text-center font-weight-bold">Owned Groups</li>
+        <% @user.owned_groups.each do |group| %>
+          <li class="list-group-item"><a href="/groups/<%= group.id %>"><%= group.name %></a></li>
         <% end %>
       </ul>
-    <% end %>
-    <a href="/groups/new"><button type="button">Create New Group</button></a>
-  </div>
 
-  <div class="column text-center">
-    <h3>Groups you are a member of:</h3>
-    <% @user.groups.each do |group| %>
-      <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
-      <ul>
-        <% group.tasks do |task| %>
-          <li><a href="/tasks/<%= task.id %>"><%= task.title %></a></li>
+    </div>
+    <div class="col-md">
+      <ul class="list-group">
+        <li class="list-group-item text-center font-weight-bold">Other Groups</li>
+        <% @user.groups.each do |group| %>
+          <li class="list-group-item"><a href="/groups/<%= group.id %>"><%= group.name %></a></li>
         <% end %>
       </ul>
-    <% end %>
+    </div>
   </div>
+
+  <br><a href="/groups/new"><button type="button">Create New Group</button></a>
+
+  <br><br><form action="/logout" method="POST" class="text-center">
+    <input type="submit" value="Log Out">
+  </form>
 
 </div>
-
-
-
-
-<br><br><form action="/logout" method="POST" class="text-center">
-  <input type="submit" value="Log Out">
-</form>
