@@ -1,4 +1,4 @@
-body {
+html, body {
   margin: 0;
 }
 
@@ -14,26 +14,22 @@ body {
 
 .bg {
   background: url("/images/abstract-texture.jpg") no-repeat center center fixed;
-  width: 100%;
-  height: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: fixed;
-  background-attachment: fixed;
+  /* height: 100vh; */
 }
 
 .signup-form {
    padding: 50px 60px;
    margin-top: 10vh;
    -webkit-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-   -moz-box-shadow:    -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Firefox 3.5 - 3.6 */
-   box-shadow:         -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+   -moz-box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Firefox 3.5 - 3.6 */
+   box-shadow: -1px 4px 26px 11px rgba(0, 0, 0, 0.7);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
 .profile-ph {
   width: 80%;
   margin: 10%;
-}
-
-.spacer {
-  height: 40vh;
 }
