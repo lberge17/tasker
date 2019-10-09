@@ -1,72 +1,73 @@
 <div class="text-center">
-  <h1>Edit Task:</h1>
+  <br><h1><%= @task.title %></h1><br>
+</div>
 
-  <div class="row">
-    <div class="column left">
-      <h3>Assign Todos</h3>
-      <ul>
-        <form class="" action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="post">
-          <input type="hidden" name="_method" value="PATCH">
-          <% @task.todos.each do |todo| %>
-            <li>
-              <label for="assignments">"<%= todo.content %>"</label>
-              <ul>
-                <li>assign to (username): <input type="text" name="assignments[<%= todo.id %>]" value="<%= todo.assigned.username if todo.assigned %>"></li>
-              </ul>
-            </li>
-            <br>
-          <% end %>
-          <input type="submit" value="Update Assignments">
-        </form>
-      </ul>
 
-      <% if @group.owner == current_user %>
-        <br><br>
-        <h3>Delete a Todo:</h3>
-        <div class="form">
-          <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <% @task.todos.each do |todo| %>
-              <input type="checkbox" name="todo[]" value="<%= todo.id %>"><%= todo.content %><br>
-            <% end %><br><br>
-            <input type="submit" value="Delete">
-          </form>
-        </div>
-      <% end %>
+<div class="row">
+  <div class="col-sm">
+    <h3>Assign Todos</h3>
+    <ul>
+      <form class="" action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <% @task.todos.each do |todo| %>
+          <li>
+            <label for="assignments">"<%= todo.content %>"</label>
+            <ul>
+              <li>assign to (username): <input type="text" name="assignments[<%= todo.id %>]" value="<%= todo.assigned.username if todo.assigned %>"></li>
+            </ul>
+          </li>
+          <br>
+        <% end %>
+        <input type="submit" value="Update Assignments" class="btn btn-info">
+      </form>
+    </ul>
+
+    <% if @group.owner == current_user %>
       <br><br>
-    </div>
-
-    <div class="column left">
-      <h3>Edit Task:</h3>
+      <h3>Delete a Todo:</h3>
       <div class="form">
-        <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
-          <input type="hidden" name="_method" value="PATCH">
-          <label for="task[title]">Change Task Title:</label><br>
-          <input type="text" name="task[title]" value="<%= @task.title %>"><br><br>
-
-          <label for="task[deadline]">Change Deadline:</label><br>
-          <input type="text" name="task[deadline]" value="<%= @task.deadline %>"><br><br>
-
-          <label for="task[description]">Change description:</label><br>
-          <textarea name="task[description]" rows="8" cols="80"><%= @task.description %></textarea><br><br>
-
-          <input type="submit" value="Update Task">
+        <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos/delete" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <% @task.todos.each do |todo| %>
+            <input type="checkbox" name="todo[]" value="<%= todo.id %>"><%= todo.content %><br>
+          <% end %><br><br>
+          <input type="submit" value="Delete" class="btn btn-danger">
         </form>
-      </div><br><br>
+      </div>
+    <% end %>
+    <br><br>
+  </div>
 
-      <% if @group.owner == current_user %>
+  <div class="col-sm">
+    <h3>Edit Task:</h3>
+    <div class="form">
+      <form  action="/groups/<%= @group.id %>/tasks/<%= @task.id %>" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <label for="task[title]">Change Task Title:</label><br>
+        <input type="text" name="task[title]" value="<%= @task.title %>"><br><br>
 
-        <h3>Delete Task:</h3>
-        <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
-        <div class="form">
-          <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete Task">
-          </form>
-        </div>
-      <% end %>
+        <label for="task[deadline]">Change Deadline:</label><br>
+        <input type="text" name="task[deadline]" value="<%= @task.deadline %>"><br><br>
 
-    </div>
+        <label for="task[description]">Change description:</label><br>
+        <textarea name="task[description]" rows="8" cols="80"><%= @task.description %></textarea><br><br>
+
+        <input type="submit" value="Update Task" class="btn btn-info">
+      </form>
+    </div><br><br>
+
+    <% if @group.owner == current_user %>
+
+      <h3>Delete Task:</h3>
+      <p>This will delete the task and all corresponding todos. It cannot be undone.</p>
+      <div class="form">
+        <form action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/delete" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete Task" class="btn btn-danger">
+        </form>
+      </div>
+    <% end %>
+
   </div>
 </div>
 
