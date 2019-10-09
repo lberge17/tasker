@@ -1,29 +1,39 @@
-<h1 class="text-center">Tasks for <%= @group.name %></h1>
+<br><h1 class="text-center">Tasks for <%= @group.name %></h1><br>
 
-<div class="row text-center">
-  <div class="column">
-    <h2>Outstanding Tasks</h2>
-    <% @group.tasks.each do |task| %>
-      <% if task.complete? == false %>
-        <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
+<div class="row">
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item font-weight-bold text-center list-group-item-info">Outstanding Tasks</li>
+      <% @group.tasks.each do |task| %>
+        <% if task.complete? == false %>
+          <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>" class="list-group-item list-group-item-action"><%= task.title %></a>
+        <% end %>
       <% end %>
-    <% end %>
-    <a href="/groups/<%= @group.id %>/tasks/new"><button type="button">Create New Task</button></a>
+    </ul>
+    <br>
+    <div class="text-center">
+      <a href="/groups/<%= @group.id %>/tasks/new"><button type="button" class="btn btn-info">Create New Task</button></a>
+    </div>
+    <br>
   </div>
-  <div class="column">
-    <h2>Completed Tasks</h2>
-    <% @group.tasks.each do |task| %>
-      <% if task.complete? == true %>
-        <h3><a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><%= task.title %></a></h3>
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item font-weight-bold text-center list-group-item-danger">Completed Tasks</li>
+      <% @group.tasks.each do |task| %>
+        <% if task.complete? == true %>
+          <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>" class="list-group-item list-group-item-action"><%= task.title %></a>
+        <% end %>
       <% end %>
-    <% end %>
-
-    <% if @group.owner == current_user %>
-      <form action="/groups/<%= @group.id %>/tasks/complete/delete" method="post">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete All Completed Tasks">
-      </form>
-    <% end %>
+    </ul>
+    <br>
+    <div class="text-center">
+      <% if @group.owner == current_user %>
+        <form action="/groups/<%= @group.id %>/tasks/complete/delete" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete All Completed Tasks" class="btn btn-danger">
+        </form>
+      <% end %>
+    </div>
 
   </div>
 </div>
