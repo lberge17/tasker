@@ -1,56 +1,64 @@
-<h1 class="text-center"><%= @group.name %></h1>
+<br><h1 class="text-center"><%= @group.name %></h1><br>
 
-<div class="row text-center">
+<div class="row">
 
-  <div class="column">
-    <h4>Owned by:</h4>
-
-    <p><%= @group.owner.username %></p><br>
-
-    <h4>Group Description:</h4>
-
-    <p><%= @group.info %></p><br>
-
-    <h4>Members:</h4>
-
-    <% @group.members.each do |member| %>
-      <p><%= member.username %></p>
-    <% end %><br><br>
+  <div class="col-sm">
+    <div class="card mx-auto" style="width: 18rem;">
+      <img src="/images/profile-placeholder.jpg" class="card-img-top profile-ph" alt="profile img placeholder">
+      <div class="card-body">
+        <h5 class="card-title"><%= @group.name %></h5>
+        <hr>
+        <p class="card-text">Owned by: <%= @group.owner.username %></p>
+        <p class="card-text">Description: <%= @group.info %></p>
+        <p class="card-text">
+          Members:
+          <% @group.members.each do |member| %>
+            <li><%= member.username %></li>
+          <% end %>
+        </p>
+        <p class="card-text">Bio: <%= @user.bio %></p>
+      </div>
+    </div>
 
     <% if @group.owner == @user %>
-      <div class="form">
+      <div class="text-center">
+        <br>
         <form  action="/groups/<%= @group.id %>/members" method="POST">
           <input type="hidden" name="_method" value="PATCH">
-          <label for="username">Add Group Member by Username:</label><br>
-          <input type="text" name="username"><br>
-          <input type="submit" value="Add Member">
+          <label for="username" class="font-weight-bold">Add Group Member by Username:</label><br>
+          <input type="text" name="username"><br><br>
+          <input type="submit" value="Add Member" class="btn btn-info">
         </form>
       </div><br>
     <% end %>
   </div>
 
-  <div class="column">
-    <h4>Oustanding Tasks:</h4>
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info font-weight-bold">Oustanding Tasks:</li>
 
-    <% @group.tasks.each do |task| %>
-      <% if task.complete? == false %>
-        <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
+      <% @group.tasks.each do |task| %>
+        <% if task.complete? == false %>
+          <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>" class="list-group-item list-group-item-action"><%= task.title %></a>
+        <% end %>
       <% end %>
-    <% end %>
+    </ul>
+    <br>
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info font-weight-bold">Completed Tasks:</li>
+
+      <% @group.tasks.each do |task| %>
+        <% if task.complete? == true %>
+          <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>" class="list-group-item list-group-item-action"><%= task.title %></a>
+        <% end %>
+      <% end %>
+      <br>
+    </ul>
 
     <br>
-    <h4>Completed Tasks:</h4>
-
-    <% @group.tasks.each do |task| %>
-      <% if task.complete? == true %>
-        <a href="/groups/<%= @group.id %>/tasks/<%= task.id %>"><p><%= task.title %></p></a>
-      <% end %>
-    <% end %>
-    <br>
-
-    <a href="/groups/<%= @group.id %>/tasks/new"><button type="button">Add New Task</button></a>
+    <a href="/groups/<%= @group.id %>/tasks/new"><button type="button" class="btn btn-info">Add New Task</button></a>
     <br><br>
-    <a href="/groups/<%= @group.id %>/tasks"><button type="button">View All Tasks</button></a>
+    <a href="/groups/<%= @group.id %>/tasks"><button type="button" class="btn btn-info">View All Tasks</button></a>
   </div>
 
 </div>
@@ -59,13 +67,13 @@
 
 <div class="text-center">
 
-  <a href="/groups/<%= @group.id %>/edit"><button type="button">Edit/Delete Group</button></a>
+  <a href="/groups/<%= @group.id %>/edit"><button type="button" class="btn btn-danger">Edit/Delete Group</button></a>
 
   <% if @group.members.include?(@user) %>
     <div class="form">
       <form  action="/groups/<%= @group.id %>/members" method="POST">
         <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Leave Group">
+        <input type="submit" value="Leave Group" class="btn btn-danger">
       </form>
     </div><br>
   <% end %>
