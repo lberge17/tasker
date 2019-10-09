@@ -10,7 +10,7 @@
           <li class="list-group-item"><a href="/groups/<%= group.id %>"><%= group.name %></a></li>
         <% end %>
       </ul>
-
+      <br>
     </div>
     <div class="col-md">
       <ul class="list-group">
@@ -19,13 +19,22 @@
           <li class="list-group-item"><a href="/groups/<%= group.id %>"><%= group.name %></a></li>
         <% end %>
       </ul>
+      <br>
     </div>
   </div>
 
-  <br><a href="/groups/new"><button type="button">Create New Group</button></a>
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <div class="text-center">
+        <br><br><a href="/groups/new"><button type="button" class="btn btn-info">Create New Group</button></a>
 
-  <br><br><form action="/logout" method="POST" class="text-center">
-    <input type="submit" value="Log Out">
-  </form>
+        <br><br><br><form action="/logout" method="POST">
+          <input type="submit" value="Log Out">
+        </form>
+      </div>
+    </div>
+    <div class="col-sm"></div>
+  </div>
 
 </div>

@@ -1,13 +1,25 @@
-<div class="text-center">
-  <h1>Create a new group!</h1>
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-sm">
 
-  <div class="form">
-    <form action="/groups" method="POST">
-      <label for="group_name">Group Name:</label>
-      <input type="text" name="group[name]" id="group_name"><br><br>
-      <input type="submit" value="Create Group">
-    </form>
+    </div>
+    <div class="col-md">
+      <br>
+      <h1>Create a new group!</h1>
+
+      <div class="form">
+        <form action="/groups" method="POST">
+          <label for="group_name">Group Name:</label>
+          <input type="text" name="group[name]" id="group_name"><br><br>
+          <input type="submit" value="Create Group" class="btn btn-info">
+        </form>
+      </div>
+    </div>
+    <div class="col-sm">
+
+    </div>
   </div>
+
 
 </div>
 
