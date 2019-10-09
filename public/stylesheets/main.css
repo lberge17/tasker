@@ -9,11 +9,14 @@ html, body {
 
 .logo {
   height: 70px;
-  border: 2px solid black;
+}
+
+.brand {
+  height: 30px;
 }
 
 .bg {
-  background: url("/images/abstract-texture.jpg") no-repeat center center fixed;
+  background: url("/images/abstract-geometric.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
