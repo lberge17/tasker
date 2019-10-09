@@ -8,8 +8,12 @@
       <input type="text" name="name" value="<%= @group.name %>"><br>
       <label for="info">Add a Group Description:</label><br>
       <textarea name="info" rows="8" style="width:50%;"><%= @group.info %></textarea><br>
-      <label for="username">Transfer Ownership (by username):</label><br>
-      <input type="text" name="username"><br><br>
+      <label for="username">Transfer Ownership:</label><br>
+      <select name="username">
+        <% @group.members.each do |member| %>
+          <option value="<%= member.username %>"><%= member.name %></option>
+        <% end %>
+      </select><br><br>
       <input type="submit" value="Update Group" class="btn btn-info">
     </form>
   </div>

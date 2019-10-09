@@ -67,7 +67,9 @@
 
 <div class="text-center">
 
-  <a href="/groups/<%= @group.id %>/edit"><button type="button" class="btn btn-danger">Edit/Delete Group</button></a>
+  <% if @group.owner == @user %>
+    <a href="/groups/<%= @group.id %>/edit"><button type="button" class="btn btn-danger">Edit/Delete Group</button></a>
+  <% end %>
 
   <% if @group.members.include?(@user) %>
     <div class="form">
