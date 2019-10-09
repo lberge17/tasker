@@ -6,16 +6,19 @@
 <div class="row">
   <div class="col-sm">
     <div class="shadow p-3 mb-5 bg-white rounded mx-3">
-      <h3>Assign Todos (by username)</h3>
+      <h3>Assign Todos:</h3>
       <ul>
         <form class="" action="/groups/<%= @group.id %>/tasks/<%= @task.id %>/todos" method="post">
           <input type="hidden" name="_method" value="PATCH">
           <% @task.todos.each do |todo| %>
             <li>
               <label for="assignments">"<%= todo.content %>"</label>
-              <ul>
-                <li>assign to: <input type="text" name="assignments[<%= todo.id %>]" value="<%= todo.assigned.username if todo.assigned %>"></li>
-              </ul>
+              <select name="assignments[<%= todo.id %>]">
+                <option <%= 'selected="selected"' if !!todo.assigned %>></option>
+                <% @group.members.each do |member| %>
+                  <option value="<%= member.username %>" <%= 'selected="selected"' if todo.assigned == member %>><%= member.name %></option>
+                <% end %>
+              </select>
             </li>
             <br>
           <% end %>
