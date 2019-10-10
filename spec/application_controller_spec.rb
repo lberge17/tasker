@@ -5,9 +5,8 @@ def app
 end
 
 describe ApplicationController do
-  it "responds with a welcome message" do
+  it "directs user to log in if not logged in or directs looged in user to their home page" do
     get '/'
     expect(last_response.status).to eq(200)
-    expect(last_response.body).to include("Welcome to the Sinatra Template!")
   end
 end
