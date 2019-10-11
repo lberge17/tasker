@@ -15,6 +15,7 @@
               <label for="assignments">"<%= todo.content %>"</label>
               <select name="assignments[<%= todo.id %>]">
                 <option <%= 'selected="selected"' if !!todo.assigned %>></option>
+                <option value="<%= @group.owner.username %>" <%= 'selected="selected"' if todo.assigned == @group.owner %>><%= @group.owner.name %></option>
                 <% @group.members.each do |member| %>
                   <option value="<%= member.username %>" <%= 'selected="selected"' if todo.assigned == member %>><%= member.name %></option>
                 <% end %>
