@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
-    if logged_in?
+    if logged_in? #may be not be necessary
       redirect "/"
     else
       if !User.find_by(username: params["username"]) && !User.find_by(email: params["email"])
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   get '/users/lookup' do
     if logged_in?
-      erb :'users/index.html'
+      erb :'users/index.html' #this doesn't fall in convention so rename it 
     else
       redirect '/'
     end

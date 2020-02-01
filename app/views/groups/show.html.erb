@@ -23,7 +23,7 @@
       <div class="text-center">
         <br>
         <form  action="/groups/<%= @group.id %>/members" method="POST">
-          <input type="hidden" name="_method" value="PATCH">
+          <input type="hidden" name="_method" value="PATCH"> <!-- patch request specifically for editing an attribute. -->
           <label for="username" class="font-weight-bold">Add Group Member by Username:</label><br>
           <input type="text" name="username"><br><br>
           <input type="submit" value="Add Member" class="btn btn-info">
