@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "AY50H3IU4I32I555F" #still need to set something secure and set that in git.ignore
+    set :session_secret, ENV['SESSION_SECRET']
     use Rack::Flash
   end
 
