@@ -3,7 +3,6 @@
 
 Created by Laura Berge as part of the Flatiron School Curriculum.
 The project required an MVC CRUD Sinatra web application.
-Deployed on Heroku at https://group-tasker.herokuapp.com/.
 
 
 ## About Tasker (more can be found in the about page of the application):
